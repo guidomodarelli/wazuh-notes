@@ -1,7 +1,13 @@
 ---
-import SearchWithDropdown from "../components/SearchWithDropdown/SearchWithDropdown.astro";
+import Home from "../components/Home.astro";
 import "../styles/tailwind.css";
 ---
+
+<script>
+	type Theme = 'light' | 'dark';
+	const theme: Theme = localStorage.getItem('theme') as Theme || 'dark';
+	document.documentElement.classList.add(theme);
+</script>
 
 <html lang="en" class="h-full">
 	<head>
@@ -12,7 +18,7 @@ import "../styles/tailwind.css";
 		<title>Astro</title>
 	</head>
 	<body class="h-full p-8">
-		<SearchWithDropdown />
+		<Home/>
 		<script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
 	</body>
 </html>
