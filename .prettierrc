@@ -1,0 +1,25 @@
+{
+  "arrowParens": "always",
+  "semi": true,
+  "trailingComma": "all",
+  "embeddedLanguageFormatting": "auto",
+  "singleQuote": true,
+  "printWidth": 110,
+  "tabWidth": 2,
+  "useTabs": false,
+  "experimentalTernaries": true,
+  "endOfLine": "lf",
+  "parser": "typescript",
+  "quoteProps": "as-needed",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "proseWrap": "preserve",
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ]
+}
