@@ -1,8 +1,9 @@
 ---
-
+import SearchWithDropdown from "../components/SearchWithDropdown/SearchWithDropdown.astro";
+import "../styles/tailwind.css";
 ---
 
-<html lang="en">
+<html lang="en" class="h-full">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -10,7 +11,18 @@
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="h-full p-8">
+		<SearchWithDropdown />
+		<script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
 	</body>
 </html>
+
+<style lang="scss">
+  body {
+    @apply bg-gray-50;
+
+		&:is(.dark *) {
+			@apply bg-gray-900;
+		}
+  }
+</style>
