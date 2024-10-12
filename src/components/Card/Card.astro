@@ -1,0 +1,86 @@
+---
+import ArrowRight from '../../assets/icons/ArrowRight';
+
+interface Props {
+  title?: string;
+  description?: string;
+  readMoreBtn?: string;
+}
+
+const { title, description, readMoreBtn = 'Read more' } = Astro.props;
+---
+
+<div class="card">
+  <div class="card-header">
+    <h5 class="title">{title}</h5>
+  </div>
+  <div class="card-content">
+    <p>
+      {description}
+    </p>
+  </div>
+  <div class="card-footer">
+    <a href="#">
+      {readMoreBtn}
+      <ArrowRight className="w-3.5 h-3.5 ms-2" />
+    </a>
+  </div>
+</div>
+
+<style lang="scss">
+  .card {
+    @apply grid max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow;
+
+    &:is(.dark *) {
+      @apply bg-gray-800 border-gray-700;
+    }
+
+    &-header {
+      .title {
+        @apply mb-2 text-2xl font-bold tracking-tight text-gray-900;
+
+        &:is(.dark *) {
+          @apply text-white;
+        }
+      }
+    }
+
+    &-content {
+      p {
+        @apply mb-3 font-normal text-gray-700;
+
+        &:is(.dark *) {
+          @apply text-gray-400;
+        }
+      }
+    }
+
+    &-footer {
+      align-self: flex-end;
+
+      a {
+        @apply inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg;
+
+        :hover {
+          @apply bg-blue-800;
+        }
+
+        :focus {
+          @apply ring-4 outline-none ring-blue-300;
+        }
+
+        &:is(.dark *) {
+          @apply bg-blue-600;
+
+          :hover {
+            @apply bg-blue-700;
+          }
+
+          :focus {
+            @apply ring-blue-800;
+          }
+        }
+      }
+    }
+  }
+</style>
