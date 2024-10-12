@@ -9,6 +9,7 @@ interface Props {
   submitButton?: string;
   placeholder?: string;
   dropdownButtons?: string[];
+  className?: string;
 }
 
 const SearchWithDropdown = (props: Props) => {
@@ -20,7 +21,7 @@ const SearchWithDropdown = (props: Props) => {
     dropdownButtons = [],
   } = props;
   return (
-    <form className="search-with-dropdown">
+    <form className={cn("search-with-dropdown", props.className)}>
       <label htmlFor="search-dropdown">{label}</label>
       {dropdownButtons.length > 0 ? (
         <>
