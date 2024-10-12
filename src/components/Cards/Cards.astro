@@ -1,0 +1,29 @@
+---
+import Card from '../Card/Card.astro';
+
+interface Card {
+  title: string;
+  description?: string;
+  readMoreBtn?: string;
+}
+
+const cards: Card[] = [];
+---
+
+<div class="cards">
+  {
+    cards.map((card) => (
+      <Card title={card.title} description={card.description} readMoreBtn={card.readMoreBtn} />
+    ))
+  }
+</div>
+
+<style lang="scss">
+  .cards {
+    @apply grid gap-6 justify-center;
+
+    @screen sm {
+      grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+    }
+  }
+</style>
