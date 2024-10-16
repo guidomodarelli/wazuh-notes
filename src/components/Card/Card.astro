@@ -1,13 +1,15 @@
 ---
 import ArrowRight from '../../assets/icons/ArrowRight';
 
-interface Props {
+export interface Props {
   title?: string;
   description?: string;
-  readMoreBtn?: string;
+  btnText?: string;
+  btnHref?: string;
+  type: string;
 }
 
-const { title, description, readMoreBtn = 'Read more' } = Astro.props;
+const { title, description, btnText: readMoreBtn = 'Read more', btnHref } = Astro.props;
 ---
 
 <div class="card">
@@ -20,7 +22,7 @@ const { title, description, readMoreBtn = 'Read more' } = Astro.props;
     </p>
   </div>
   <div class="card-footer">
-    <a href="#">
+    <a href={btnHref}>
       {readMoreBtn}
       <ArrowRight className="w-3.5 h-3.5 ms-2" />
     </a>
