@@ -1,21 +1,28 @@
 ---
-import Card from '../Card/Card.astro';
+import Card, { type Props as CardProps } from '../Card/Card.astro';
 
-interface Card {
+interface Frontmatter {
   title: string;
-  description?: string;
-  readMoreBtn?: string;
+  description: string;
+  slug: string;
 }
 
-const cards: Card[] = [];
+const faqs: { frontmatter: Frontmatter }[] = Object.values(
+  await import.meta.glob('../../content/faqs/*.md', { eager: true }),
+);
+
+const cards: CardProps[] = [
+  ...faqs.map(({ frontmatter }) => ({
+    title: frontmatter.title,
+    description: frontmatter.description,
+    btnHref: `/faqs/${frontmatter.slug}`,
+    type: 'faq',
+  })),
+];
 ---
 
 <div class="cards">
-  {
-    cards.map((card) => (
-      <Card title={card.title} description={card.description} readMoreBtn={card.readMoreBtn} />
-    ))
-  }
+  {cards.map((card) => <Card {...card} />)}
 </div>
 
 <style lang="scss">
