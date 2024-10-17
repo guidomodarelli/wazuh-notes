@@ -1,34 +1,8 @@
 ---
-import Home from "../components/Home.astro";
-import "../styles/tailwind.css";
+import Home from '../components/Home.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<script>
-	type Theme = 'light' | 'dark';
-	const theme: Theme = localStorage.getItem('theme') as Theme || 'dark';
-	document.documentElement.classList.add(theme);
-</script>
-
-<html lang="en" class="min-h-full">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body class="min-h-full p-8">
-		<Home/>
-		<script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
-	</body>
-</html>
-
-<style lang="scss">
-  body {
-    @apply bg-gray-50;
-
-		&:is(.dark *) {
-			@apply bg-gray-900;
-		}
-  }
-</style>
+<Layout title="Astro">
+  <Home />
+</Layout>
