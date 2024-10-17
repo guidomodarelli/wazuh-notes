@@ -7,9 +7,10 @@ export interface Props {
   btnText?: string;
   btnHref?: string;
   type: string;
+  tags?: string[];
 }
 
-const { title, description, btnText: readMoreBtn = 'Read more', btnHref } = Astro.props;
+const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = [] } = Astro.props;
 ---
 
 <div class="card">
@@ -22,16 +23,21 @@ const { title, description, btnText: readMoreBtn = 'Read more', btnHref } = Astr
     </p>
   </div>
   <div class="card-footer">
-    <a href={btnHref}>
-      {readMoreBtn}
-      <ArrowRight className="w-3.5 h-3.5 ms-2" />
-    </a>
+    <div class="tags">
+      {tags?.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+    <div>
+      <a href={btnHref}>
+        {readMoreBtn}
+        <ArrowRight className="w-3.5 h-3.5 ms-2" />
+      </a>
+    </div>
   </div>
 </div>
 
 <style lang="scss">
   .card {
-    @apply grid max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow;
+    @apply grid gap-3 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow;
 
     &:is(.dark *) {
       @apply bg-gray-800 border-gray-700;
@@ -39,25 +45,12 @@ const { title, description, btnText: readMoreBtn = 'Read more', btnHref } = Astr
 
     &-header {
       .title {
-        @apply mb-2 text-2xl font-bold tracking-tight text-gray-900;
-
-        &:is(.dark *) {
-          @apply text-white;
-        }
-      }
-    }
-
-    &-content {
-      p {
-        @apply mb-3 font-normal text-gray-700;
-
-        &:is(.dark *) {
-          @apply text-gray-400;
-        }
+        @apply mb-2 text-2xl font-bold;
       }
     }
 
     &-footer {
+      @apply flex flex-col gap-6;
       align-self: flex-end;
 
       a {
@@ -81,6 +74,18 @@ const { title, description, btnText: readMoreBtn = 'Read more', btnHref } = Astr
           :focus {
             @apply ring-blue-800;
           }
+        }
+      }
+    }
+
+    .tags {
+      @apply flex flex-wrap gap-2;
+
+      .tag {
+        @apply bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full;
+
+        &:is(.dark *) {
+          @apply bg-gray-700 text-gray-300;
         }
       }
     }
