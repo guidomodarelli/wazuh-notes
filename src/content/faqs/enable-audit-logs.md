@@ -17,16 +17,17 @@ Enable the audit logs
 Enable the logging for the audit logs, adding to the configuration:
 
 - **Elasticsearch with Open Distro for Elasticsearch:**
-```xml
-opendistro_security.audit.type:: <debug|internal_opensearch|external_elasticsearch|webhook|log4j>
-```
 
-[Documentation](https://opendistro.github.io/for-elasticsearch-docs/docs/security/audit-logs/)
+    ```
+    opendistro_security.audit.type:: <debug|internal_opensearch|external_elasticsearch|webhook|log4j>
+    ```
+
+    [Documentation](https://opendistro.github.io/for-elasticsearch-docs/docs/security/audit-logs/)
 
 - **OpenSearch/Wazuh indexer**:
 
-```xml
-plugins.security.audit.type: <debug|internal_opensearch|external_opensearch|webhook|log4j>
-```
+    ```
+    plugins.security.audit.type: <debug|internal_opensearch|external_opensearch|webhook|log4j>
+    ```
 
-[Documentation](https://opensearch.org/docs/1.2/security-plugin/audit-logs/storage-types/)
+    [Documentation](https://opensearch.org/docs/1.2/security-plugin/audit-logs/storage-types/)

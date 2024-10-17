@@ -18,36 +18,36 @@ Use the Filebeat keystore. More info in https://www.elastic.co/guide/en/beats/fi
 
 1. Create the Filebeat keystore
 
-```
-filebeat keystore create
-```
+    ```sh
+    filebeat keystore create
+    ```
 
 2. Add a value
 
-```
-filebeat keystore add <KEY_NAME>
-```
+    ```sh
+    filebeat keystore add <KEY_NAME>
+    ```
 
-where:
+    where:
 
-- `<KEY_NAME>`: is the name of key
+    - `<KEY_NAME>`: is the name of key
 
-After a prompt requires you write the value.
+    After a prompt requires you write the value.
 
-for example:
+    For example:
 
-```
-filebeat keystore add admin_password
-```
+    ```sh
+    filebeat keystore add admin_password
+    ```
 
-> Note: You can add the values from stdin. More info in the documentation link.
+    > Note: You can add the values from stdin. More info in the documentation link.
 
 3. Replace the key in the configuration file (located in `/etc/filebeat/filebeat.yml`).
 
-Access to the value using the syntax: `${<KEY_NAME>}`.
+    Access to the value using the syntax: `${<KEY_NAME>}`.
 
-For example:
+    For example:
 
-```
-output.elasticsearch.password: "${admin_password}"
-```
+    ```yml
+    output.elasticsearch.password: "${admin_password}"
+    ```

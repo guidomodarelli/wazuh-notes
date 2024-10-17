@@ -23,15 +23,18 @@ To solve this problem you should follow the next instructions:
    - It's recommendable do it by chunks to avoid problems importing them latter.
 2. Stop Kibana service
 3. Delete the .kibana indice using the ES API
+
    - Execute this curl after modify the url as you need (https, auth headers, etc)
-     ```bash
-     curl -k -XDELETE http://<ES_ip>/.kibana
-     ```
+
+      ```bash
+      curl -k -XDELETE http://<ES_ip>/.kibana
+      ```
+
 4. Start Kibana service
 5. Re import all saved Objects:
    - Go to **Kibana (menu) / Stack Management / Saved Objects** and import all of the previous files exported
 
-> After each upgrad Kibana makes an alias for .kibana index you could try deleting all of them adding `*` at the end of the curl
+> After each upgrad Kibana makes an alias for `.kibana` index you could try deleting all of them adding `*` at the end of the curl
 
 ```bash
 curl -k -XDELETE http://<ES_ip>/.kibana*
