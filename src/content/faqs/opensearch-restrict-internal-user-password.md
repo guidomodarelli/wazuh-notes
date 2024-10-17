@@ -8,12 +8,12 @@ tags: [ "opensearch", "secure", "wazuh-indexer" ]
 version: ""
 ---
 
-### Issue
+# Issue
 Validate the internal user password.
 
 For example, to force passwords to be more secure.
 
-### Remediation
+## Remediation
 
 If you want to run your users’ passwords against some validation, specify a regular expression (regex) in the OpenSearch configuration file (`opensearch.yml`). You can also include an error message that loads when passwords don’t pass validation. 
 

@@ -8,11 +8,11 @@ tags: [ "wazuh-app", "permissions" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Error `This section could not be displayed because you do not have permission to get access to the registration service.` in the **Deploy new agent** page.
 
-### Remediation
+## Remediation
 
 The message `This section could not be displayed because you do not have permission to get access to the registration service.` is displayed in the **Deploy agent** page because of the current user could not retrieve the information about the registration service.
 

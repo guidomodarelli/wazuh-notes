@@ -8,7 +8,7 @@ tags: [ "elasticsearch", "shards", "wazuh-indexer" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Error in Elasticsearch/Wazuh indexer:
 
@@ -16,7 +16,7 @@ Error in Elasticsearch/Wazuh indexer:
 "Validation Failed: 1: this action would add [2] total shards, but this cluster currently has [999]/[1000] maximum shards open;"
 ```
 
-### Remediation
+## Remediation
 
 This means the shards limit count was reached (`1000` by default in the node). To fix this issue, there are multiple options:
 

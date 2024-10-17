@@ -8,10 +8,10 @@ tags:  [ "deployment", "eps", "event" ]
 version: ""
 ---
 
-### Issue
+# Issue
 Ensure the Wazuh deployment is balanced about the events collection and analysis
 
-### Remediation
+## Remediation
 
 The configuration of a Wazuh environment should be balanced, ensuring the collected events by the Wazuh agents (or Wazuh server themself) are analyzed by the Wazuh server and there are not events lost. If this is not done correctly, could cause events are lost or Wazuh server or agents are overloaded.
 

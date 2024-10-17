@@ -8,11 +8,11 @@ tags: [ "odfe", "kibana", "saved-objects", "permissions" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Share saved objects in ODFE.
 
-### Remediation
+## Remediation
 
 You could use the ODFE tenants to get it. You create and save the dashboard/visualization/index pattern under a tenant and you give permissions to a user to read (or read and write) so this can see them in the specific tenant is selected.
 

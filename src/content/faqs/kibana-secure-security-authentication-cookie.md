@@ -8,11 +8,11 @@ tags: [ "kibana", "secure", "cookie", "odfe" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Add the `Secure` flag for the `security_authentication` cookie.
 
-### Remediation
+## Remediation
 
 The `security_authentication` cookie comes from the `security` plugin for Kibana of Open Distro for Elasticsearch.
 

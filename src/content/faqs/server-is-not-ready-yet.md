@@ -8,13 +8,13 @@ tags: [ "kibana", "wazuh-dashboard" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Message displayed when accessing to the URL where is exposed the platform:
-- Kibana server is not ready yet 
+- Kibana server is not ready yet
 - Wazuh dashboard server is not ready yet
 
-### Remediation
+## Remediation
 
 This message appears when the platform was initiated recently, but could indicate that there is some error. You should check the platform logs.
 

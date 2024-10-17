@@ -8,7 +8,7 @@ tags: [ "browser", "secure" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 If you are using self-signed certificates to expose a web, you could get in your browser the URL is untrusted.
 
@@ -16,7 +16,7 @@ Validate the internal user password.
 
 For example, to force passwords to be more secure.
 
-### Remediation
+## Remediation
 
 Add the CA self-signed certificate used by the exposed web to the browser. The addition of the certificate depends on your browser.
 

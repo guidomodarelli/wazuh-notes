@@ -8,11 +8,11 @@ tags:  [ "elasticsearch", "circuit-breaker-exception" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 `circuit_breaking_exception Data too large, data for [<http_request>]`
 
-### Remediation
+## Remediation
 
 It seems like your Wazuh indexer/Elasticsearch is running out of RAM.
 

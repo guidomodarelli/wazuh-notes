@@ -8,11 +8,11 @@ tags: [ "alerts", "elasticsearch", "disk-usage", "retention", "elasticsearch" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Define mechanims to logs retention.
 
-### Remediation
+## Remediation
 
 Elasticsearch
 

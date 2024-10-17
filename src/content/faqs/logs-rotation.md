@@ -8,11 +8,11 @@ tags: [ "disk-usage", "logs", "rotation" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Define mechanims to rotate the logs.
 
-### Remediation
+## Remediation
 
 Logs rotation
 

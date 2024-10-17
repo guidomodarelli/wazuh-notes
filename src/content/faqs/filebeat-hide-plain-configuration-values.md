@@ -8,11 +8,11 @@ tags: [ "filebeat", "configuration", "hide", "credentials", "password" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Hide sensitive values in the configuration file.
 
-### Remediation
+## Remediation
 
 Use the Filebeat keystore. More info in https://www.elastic.co/guide/en/beats/filebeat/7.10/keystore.html
 

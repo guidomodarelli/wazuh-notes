@@ -8,10 +8,11 @@ tags: [ "audit", "logs"]
 version: ""
 ---
 
-### Issue
+# Issue
+
 Enable the audit logs
 
-### Remediation
+## Remediation
 
 Enable the logging for the audit logs, adding to the configuration:
 

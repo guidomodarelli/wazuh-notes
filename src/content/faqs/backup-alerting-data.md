@@ -8,11 +8,11 @@ tags: [ "alerting", "backup"]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Backup the data of Alerting applicaiton of Wazuh dashboard.
 
-### Remediation
+## Remediation
 
 The monitors and triggers of the Alerting application are stored into the `.opendistro-alerting-config` index according to this topic on the OpenSearch forum: https://forum.opensearch.org/t/back-up-of-alerting-monitors-destinations/959
 

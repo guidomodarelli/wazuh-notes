@@ -8,10 +8,10 @@ tags:  [ "elasticsearch", "events", "index", "wazuh-indexer" ]
 version: ""
 ---
 
-### Issue
+# Issue
 Separate conditionally alerts or archives to different indices
 
-### Remediation
+## Remediation
 
 The Wazuh alerts or archives are indexed through an ingest pipeline. Theses pipelines have a processor that sets the index name using the `date_index_name` processor with the following schema:
 - a prefix: `wazuh-alerts-4.x-` for alerts or `wazuh-archives-4.x-*` for archives

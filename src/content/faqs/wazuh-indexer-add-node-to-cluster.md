@@ -8,11 +8,11 @@ tags: [ "cluster", "node", "wazuh-indexer" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Add node to Wazuh indexer cluster
 
-### Remediation
+## Remediation
 
 To add a Wazuh indexer node to an existing cluster you need to follow the default procedure:
 https://documentation.wazuh.com/current/installation-guide/wazuh-indexer/step-by-step.html

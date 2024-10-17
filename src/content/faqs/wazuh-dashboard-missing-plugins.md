@@ -8,11 +8,11 @@ tags: [ "anomaly-detection", "wazuh-dashboard", "wazuh-dashboard-plugins" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Wazuh dashboard missing plugins.
 
-### Remediation
+## Remediation
 
 Depending on the Wazuh dashboard version, some plugins could not be included in the default installation comparing to the OpenSearch Dashboards base version that is based on.
 

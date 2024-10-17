@@ -8,11 +8,11 @@ tags: [ "device", "logs", "network", "firewall", "switches" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Define mechanims to rotate the logs.
 
-### Remediation
+## Remediation
 
 
 For these devices that do not support the installation of a Wazuh agent, you can use:

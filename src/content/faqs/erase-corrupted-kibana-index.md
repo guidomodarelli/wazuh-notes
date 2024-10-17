@@ -8,11 +8,11 @@ tags: [ ".kibana", "kibana", "index", "indices", "delete", "remove" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 The `.kibana` index gets corrupted.
 
-### Remediation
+## Remediation
 
 Sometimes the .kibana index gets corrupted, the causes are variety but normally after many upgrades or due to big size environments.
 

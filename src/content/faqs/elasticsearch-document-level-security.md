@@ -8,11 +8,11 @@ tags: [ "elasticsearch", "permissions" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Give to an user permissions for specific Elasticsearch documents.
 
-### Remediation
+## Remediation
 
 Depends on your environment:
 

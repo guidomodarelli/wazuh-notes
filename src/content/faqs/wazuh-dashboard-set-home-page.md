@@ -8,10 +8,10 @@ tags:  [ "home", "wazuh-dashboard" ]
 version: ""
 ---
 
-### Issue
+# Issue
 Set home page to point to some specific view of Wazuh plugins.
 
-### Remediation
+## Remediation
 
 Edit the Wazuh dashboard configuration file `opensearch_dashboards.yml`:
 

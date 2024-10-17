@@ -8,11 +8,11 @@ tags: [ "wazuh-app", "wazuh-app-jobs", "permissions" ]
 version: ""
 ---
 
-### Issue
+# Issue
 
 Give to the Kibana internal user permissions for run Wazuh app backend jobs.
 
-### Remediation
+## Remediation
 
 The Kibana internal user needs some permissions to do some jobs for the Wazuh app:
 
