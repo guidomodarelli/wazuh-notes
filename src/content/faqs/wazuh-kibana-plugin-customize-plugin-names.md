@@ -8,9 +8,10 @@ tags: [ "wazuh-app", "wazuh-app-customization" ]
 version: ""
 ---
 
-The next modifications are done in the production plugin code.
+# The next modifications are done in the production plugin code.
 
-# Plugin title
+## Plugin title
+
 ```sh
 sed -i 's|title:"Wazuh"|title:"<PLUGIN_TITLE>"|g' <PATH_TO_WAZUH_PLUGIN_ROOT>/target/public/wazuh.plugin.js
 ```
@@ -18,7 +19,8 @@ where:
 - <PLUGIN_TITLE> plugin title.
 - <PATH_TO_WAZUH_PLUGIN_ROOT> path to the Wazuh plugin root.
 
-# Plugin category label
+## Plugin category label
+
 ```sh
 sed -i 's|label:"Wazuh"|label:"<PLUGIN_CATEGORY_LABEL>"|g' <PATH_TO_WAZUH_PLUGIN_ROOT>/target/public/wazuh.plugin.js
 ```
@@ -36,7 +38,7 @@ where:
 
 > The `wazuh.plugin.js` file path can change in the commands if it use relative path. The guide uses absolute paths.
 
-# Example
+## Example
 
 Change:
  - plugin title: `Custom plugin`
