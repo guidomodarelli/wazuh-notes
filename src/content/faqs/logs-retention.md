@@ -20,5 +20,12 @@ TODO
 
 Wazuh manager - alerts
 
-As Wazuh is not using a retention policy by default, you may set up a cron job policy to accomplish so. For instance:
-In order to delete Wazuh alerts old logs, you can use the following one:`45 0 * * * find /var/ossec/logs/alerts/ -name "*.gz" -type f -mtime +90 -exec rm -f {} \;`
+As Wazuh is not using a retention policy by default, you may set up a cron job policy to accomplish so.
+
+### For instance
+
+In order to delete Wazuh alerts old logs, you can use the following one:
+
+```sh
+45 0 * * * find /var/ossec/logs/alerts/ -name "*.gz" -type f -mtime +90 -exec rm -f {} \;
+```
