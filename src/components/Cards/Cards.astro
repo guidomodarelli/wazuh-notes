@@ -5,19 +5,24 @@ interface Frontmatter {
   title: string;
   description: string;
   slug: string;
+  tags?: string[];
 }
 
-const faqs: { frontmatter: Frontmatter }[] = Object.values(
+const faqs: { frontmatter: Frontmatter; file: string }[] = Object.values(
   await import.meta.glob('../../content/faqs/*.md', { eager: true }),
 );
 
 const cards: CardProps[] = [
-  ...faqs.map(({ frontmatter }) => ({
-    title: frontmatter.title,
-    description: frontmatter.description,
-    btnHref: `/faqs/${frontmatter.slug}`,
-    type: 'faq',
-  })),
+  ...faqs.map(({ frontmatter, file }) => {
+    const filename = file.split('/').pop()?.split('.')[0];
+    return {
+      title: frontmatter.title,
+      description: frontmatter.description,
+      btnHref: `/content/faqs/${filename}`,
+      tags: frontmatter.tags,
+      type: 'faq',
+    };
+  }),
 ];
 ---
 
