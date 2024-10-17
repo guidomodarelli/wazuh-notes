@@ -2,6 +2,148 @@
 @tailwind components;
 @tailwind utilities;
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   word-break: break-word;
+  @apply tracking-tight text-gray-900;
+
+  &:is(.dark *) {
+    @apply text-white;
+  }
+}
+
+h1 {
+  @apply text-5xl font-bold mb-6;
+}
+
+h2 {
+  @apply text-3xl font-bold mb-4;
+}
+
+h3 {
+  @apply text-2xl font-bold mb-3;
+}
+
+h4 {
+  @apply text-xl font-bold mb-2;
+}
+
+body,
+p {
+  @apply mb-3 font-normal text-gray-700;
+
+  &:is(.dark *) {
+    @apply text-gray-400;
+  }
+}
+
+pre:has(code) {
+  @apply rounded-lg p-4 mb-3;
+}
+
+pre > code {
+  > .line {
+    /* wrap lines */
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
+:not(pre) > code {
+  @apply bg-gray-300 text-gray-800 text-sm px-1 py-0.5 rounded-md;
+
+  &:is(.dark *) {
+    @apply bg-gray-700 text-gray-300;
+  }
+}
+
+ul {
+  @apply list-disc list-inside;
+
+  li {
+    @apply mb-2;
+  }
+}
+
+ol {
+  @apply list-decimal list-inside;
+
+  li {
+    @apply mb-2;
+  }
+}
+
+li {
+  > p:first-child {
+    display: inline;
+    margin-left: 0 !important;
+
+    + * {
+      margin-top: 1rem;
+    }
+  }
+
+  blockquote {
+    @apply  ml-4;
+  }
+
+  > * {
+    margin-left: 1em;
+
+  }
+
+  code, strong, a {
+    margin-left: 0;
+  }
+
+  ul, ol {
+    @apply mt-2;
+  }
+}
+
+a {
+  @apply text-blue-500 underline;
+
+  &:is(.dark *) {
+    @apply text-blue-400;
+  }
+}
+
+blockquote {
+  @apply border-l-4 border-gray-300 pl-4 text-gray-700;
+  /* add line vertically */
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 0.25em solid;
+  font-style: italic;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  counter-reset: my-awesome-counter;
+
+  &::before {
+    counter-increment: my-awesome-counter;
+    content: counter(my-awesome-counter);
+    position: absolute;
+    left: -2.5em;
+    top: -0.5em;
+    font-size: 3em;
+    line-height: 1em;
+    color: #ccc;
+    font-style: normal;
+    font-weight: bold;
+    text-align: right;
+    width: 2em;
+    transform: rotate(-35deg);
+  }
+
+  p {
+    @apply mb-0;
+  }
+
+  &:is(.dark *) {
+    @apply border-gray-700 text-gray-300;
+  }
 }
