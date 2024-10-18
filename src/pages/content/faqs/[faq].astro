@@ -1,6 +1,7 @@
 ---
-import { getEntry } from "astro:content";
+import { getEntry } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
+import Tag from '../../../components/Tag.astro';
 
 export function getStaticPaths() {
   return [
@@ -47,6 +48,15 @@ const { Content } = await entry.render();
 
 <Layout title={title}>
   <h1>{title}</h1>
+  <div class="tags">
+    {tags.map((tag) => <Tag tag={tag} color="dark" />)}
+  </div>
   <p>{description}</p>
   <Content />
 </Layout>
+
+<style lang="scss">
+  .tags {
+    @apply flex flex-wrap gap-2 mb-6;
+  }
+</style>
