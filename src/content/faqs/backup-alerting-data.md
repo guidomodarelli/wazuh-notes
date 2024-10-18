@@ -3,7 +3,7 @@ date: "2024/06/17"
 title: "Backup the data of Alerting applicaiton of Wazuh dashboard."
 author: ""
 description: "Backup the data of Alerting applicaiton of Wazuh dashboard."
-tags: [ "alerting", "backup"]
+tags: [ "alerting", "backup" ]
 version: ""
 ---
 
@@ -17,7 +17,9 @@ The monitors and triggers of the Alerting application are stored into the `.open
 
 List and check the existence of this index (`.opendistro-alerting-config`), run this request from the `Dev Tools` application of Wazuh dashboard:
 
-```GET _cat/indices?expand_wildcards=all```
+```http
+GET _cat/indices?expand_wildcards=all
+```
 
 ![image](https://github.com/wazuh/community/assets/34042064/19b8eaf7-d57b-4e9f-9650-312bed215fe7)
 
