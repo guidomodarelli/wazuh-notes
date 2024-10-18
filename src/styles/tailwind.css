@@ -61,20 +61,21 @@ pre > code {
   }
 }
 
-ul {
-  @apply list-disc list-inside;
+ul,
+ol {
+  @apply list-outside ps-10;
 
   li {
     @apply mb-2;
   }
 }
 
-ol {
-  @apply list-decimal list-inside;
+ul {
+  @apply list-disc;
+}
 
-  li {
-    @apply mb-2;
-  }
+ol {
+  @apply list-decimal;
 }
 
 li {
@@ -87,20 +88,19 @@ li {
     }
   }
 
-  blockquote {
-    @apply  ml-4;
+  &:has(> p:first-child) {
+    > :is(pre, p, blockquote) {
+      content: "";
+      margin-inline-start: 1rem;
+    }
   }
 
-  > * {
-    margin-left: 1em;
-
+  &:not(:has(> p:first-child)) {
+    padding-left: 0.5rem;
   }
 
-  code, strong, a {
-    margin-left: 0;
-  }
-
-  ul, ol {
+  ul,
+  ol {
     @apply mt-2;
   }
 }
