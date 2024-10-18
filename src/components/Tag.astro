@@ -1,0 +1,35 @@
+---
+import { cn } from "../utils/cn";
+
+interface Props {
+  tag: string;
+  color?: 'dark',
+  rounded?: boolean,
+}
+
+const { tag, color = 'dark', rounded = false } = Astro.props;
+---
+
+<span
+  class={cn("tag rounded", {
+    dark: color === 'dark',
+    'rounded-full': rounded,
+  })}
+>
+  {tag}
+</span>
+
+<style lang="scss">
+  .tag {
+    @apply text-xs font-medium px-2.5 py-0.5 text-center;
+    word-break: break-word;
+
+    &.dark {
+      @apply bg-gray-100 text-gray-800;
+
+      &:is(.dark *) {
+        @apply bg-gray-700 text-gray-300;
+      }
+    }
+  }
+</style>
