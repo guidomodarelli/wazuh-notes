@@ -17,19 +17,19 @@ h6 {
 }
 
 h1 {
-  @apply text-5xl font-bold mb-6;
+  @apply text-5xl font-bold mb-6 mt-6;
 }
 
 h2 {
-  @apply text-3xl font-bold mb-4;
+  @apply text-3xl font-bold mb-4 mt-6;
 }
 
 h3 {
-  @apply text-2xl font-bold mb-3;
+  @apply text-2xl font-bold mb-3 mt-4;
 }
 
 h4 {
-  @apply text-xl font-bold mb-2;
+  @apply text-xl font-bold mb-2 mt-3;
 }
 
 body,
