@@ -1,6 +1,5 @@
 ---
-slug: "filebeat-modify-ingest-pipeline"
-date: "2020-09-15"
+date: "2020/09/15"
 title: "Modify ingest pipeline"
 author: ""
 description: "modify-ingest-pipeline"
@@ -8,7 +7,7 @@ tags: [ "filebeat", "ingest", "pipeline" ]
 version: ""
 ---
 
-# Issue
+## Issue
 
 Modify the ingests pipeline for alerts or archives.
 

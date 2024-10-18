@@ -1,6 +1,5 @@
 ---
-slug: "server-is-not-ready-yet"
-date: "2020-07-06"
+date: "2020/07/06"
 title: "Server is not ready yet"
 author: ""
 description: ""
@@ -8,7 +7,7 @@ tags: [ "kibana", "wazuh-dashboard" ]
 version: ""
 ---
 
-# Issue
+## Issue
 
 Message displayed when accessing to the URL where is exposed the platform:
 - Kibana server is not ready yet

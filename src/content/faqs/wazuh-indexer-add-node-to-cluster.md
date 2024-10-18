@@ -1,6 +1,5 @@
 ---
-slug: "wazuh-indexer-add-node-to-cluster"
-date: "2022-06-20"
+date: "2022/06/20"
 title: "Add node to Wazuh indexer cluster"
 author: ""
 description: ""
@@ -8,7 +7,7 @@ tags: [ "cluster", "node", "wazuh-indexer" ]
 version: ""
 ---
 
-# Issue
+## Issue
 
 Add node to Wazuh indexer cluster
 

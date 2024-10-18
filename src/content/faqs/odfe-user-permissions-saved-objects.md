@@ -1,6 +1,5 @@
 ---
-slug: "odfe-user-permissions-saved-objects"
-date: "2020-09-15"
+date: "2020/09/15"
 title: "Share saved objects"
 author: ""
 description: "Give to an user permissions for specific saved objects"
@@ -8,7 +7,7 @@ tags: [ "odfe", "kibana", "saved-objects", "permissions" ]
 version: ""
 ---
 
-# Issue
+## Issue
 
 Share saved objects in ODFE.
 

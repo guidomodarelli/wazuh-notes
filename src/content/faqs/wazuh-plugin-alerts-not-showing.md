@@ -1,6 +1,5 @@
 ---
-slug: "wazuh-plugin-alerts-not-showing"
-date: "2022-06-20"
+date: "2022/06/20"
 title: "Alerts are not showing in the Wazuh plugin"
 author: ""
 description: ""
@@ -8,7 +7,7 @@ tags: [ "alerts", "elasticsearch", "filebeat", "wazuh-app", "wazuh-indexer" ]
 version: ""
 ---
 
-# Issue
+## Issue
 
 The alerts data is not visible in Kibana or Wazuh dashboards or stopped to be displayed.
 

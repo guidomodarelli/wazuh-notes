@@ -1,6 +1,5 @@
 ---
-slug: "wazuh-dashboard-set-home-page"
-date: "2024-06-10"
+date: "2024/06/10"
 title: "Set home page"
 author: ""
 description: "change home page of Wazuh dashboard"
@@ -8,7 +7,8 @@ tags:  [ "home", "wazuh-dashboard" ]
 version: ""
 ---
 
-# Issue
+## Issue
+
 Set home page to point to some specific view of Wazuh plugins.
 
 ## Remediation

@@ -1,6 +1,5 @@
 ---
-slug: "reporting-error-missing-dependencies"
-date: "2023-02-07"
+date: "2023/02/07"
 title: "Reporting error due to missing dependencies"
 author: ""
 description: "Reporting error due to missing dependencies. Puppeter."
@@ -8,7 +7,7 @@ tags: [ "puppeteer", "reporting", "wazuh-dashboard" ]
 version: ""
 ---
 
-# Issue
+## Issue
 
 ```sh
 opensearch-dashboards[763]: {"type":"log","@timestamp":"2023-02-03T07:16:52Z","tags":["error","plugins","reportsDashboards"],"pid":763,"message":"Failed to generate report by id: Error: Protocol error (Target.setDiscoverTargets): Target closed."}

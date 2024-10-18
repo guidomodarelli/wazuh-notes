@@ -1,6 +1,5 @@
 ---
-slug: "kibana-secure-security-authentication-cookie"
-date: "2022-03-01"
+date: "2022/03/01"
 title: "Secure the secutirity_authentication cookie"
 author: ""
 description: "Secure the secutirity_authentication cookie in Kibana using Open Distro for Elasticsearch"
@@ -8,7 +7,7 @@ tags: [ "kibana", "secure", "cookie", "odfe" ]
 version: ""
 ---
 
-# Issue
+## Issue
 
 Add the `Secure` flag for the `security_authentication` cookie.
 

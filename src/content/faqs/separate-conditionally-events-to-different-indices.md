@@ -1,6 +1,5 @@
 ---
-slug: "separate-conditionally-events-to-different-indices"
-date: "2023-10-20"
+date: "2023/10/20"
 title: "Separate conditionally events to different indices"
 author: "Desvelao"
 description: "Separate conditionally events to different indices"
@@ -8,7 +7,8 @@ tags:  [ "elasticsearch", "events", "index", "wazuh-indexer" ]
 version: ""
 ---
 
-# Issue
+## Issue
+
 Separate conditionally alerts or archives to different indices
 
 ## Remediation

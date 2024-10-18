@@ -1,6 +1,5 @@
 ---
-slug: "monitor-network-devices"
-date: "2024-06-17"
+date: "2024/06/17"
 title: "Monitor network devices"
 author: ""
 description: "Monitor network devices"
@@ -8,7 +7,7 @@ tags: [ "device", "logs", "network", "firewall", "switches" ]
 version: ""
 ---
 
-# Issue
+## Issue
 
 Define mechanims to rotate the logs.
 

@@ -1,6 +1,5 @@
 ---
-slug: "enable-audit-logs"
-date: "2022-09-23"
+date: "2022/09/23"
 title: "Enable audit logs"
 author: ""
 description: "Enable the audit logs"
@@ -8,7 +7,7 @@ tags: [ "audit", "logs"]
 version: ""
 ---
 
-# Issue
+## Issue
 
 Enable the audit logs
 

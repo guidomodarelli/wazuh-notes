@@ -1,6 +1,5 @@
 ---
-slug: "enable-wazuh-archives"
-date: "2022-04-18"
+date: "2022/04/18"
 title: "Enable Wazuh archives"
 author: ""
 description: "Enable Wazuh `archives` in the manager and Filebeat"
@@ -8,7 +7,7 @@ tags: [ "filebeat", "archives" ]
 version: ""
 ---
 
-# Issue
+## Issue
 
 Enable `archives` of `wazuh` module.
 

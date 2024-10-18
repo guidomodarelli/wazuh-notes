@@ -1,6 +1,5 @@
 ---
-slug: "backup-alerting-data"
-date: "2024-06-17"
+date: "2024/06/17"
 title: "Backup the data of Alerting applicaiton of Wazuh dashboard."
 author: ""
 description: "Backup the data of Alerting applicaiton of Wazuh dashboard."
@@ -8,7 +7,7 @@ tags: [ "alerting", "backup"]
 version: ""
 ---
 
-# Issue
+## Issue
 
 Backup the data of Alerting applicaiton of Wazuh dashboard.
 

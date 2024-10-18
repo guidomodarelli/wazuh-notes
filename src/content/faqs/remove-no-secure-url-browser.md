@@ -1,6 +1,5 @@
 ---
-slug: "remove-no-secure-url-browser"
-date: "2024-05-22"
+date: "2024/05/22"
 title: "Remove the untrusted URL from browser"
 author: "Desvelao"
 description: "Remove the untrusted URL from browser"
@@ -8,7 +7,7 @@ tags: [ "browser", "secure" ]
 version: ""
 ---
 
-# Issue
+## Issue
 
 If you are using self-signed certificates to expose a web, you could get in your browser the URL is untrusted.
 

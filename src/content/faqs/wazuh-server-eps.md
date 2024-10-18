@@ -1,6 +1,5 @@
 ---
-slug: "wazuh-server-eps"
-date: "2024-04-11"
+date: "2024/04/11"
 title: "Wazuh EPS"
 author: "Desvelao"
 description: "Wazuh EPS (events per second)"
@@ -8,7 +7,8 @@ tags:  [ "deployment", "eps", "event" ]
 version: ""
 ---
 
-# Issue
+## Issue
+
 Ensure the Wazuh deployment is balanced about the events collection and analysis
 
 ## Remediation
