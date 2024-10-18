@@ -26,7 +26,8 @@ To separate some events to another index, adds after the default `date_index_nam
 
 Depending on the format of the index name:
 - contains the date: use the `date_index_name` processor https://www.elastic.co/guide/en/elasticsearch/reference/7.10/date-index-name-processor.html
-    ```
+
+    ```json
     {
         "date_index_name" : {
             "field" : "timestamp",
@@ -39,7 +40,8 @@ Depending on the format of the index name:
     }
     ```
 - fixed: use the `set` processor to set the `_index` name https://www.elastic.co/guide/en/elasticsearch/reference/7.10/set-processor.html
-    ```
+
+    ```json
     {
         "set": {
             "field" : "_index",
@@ -57,9 +59,11 @@ The ingest pipeline can be modified through:
 - editing the ingest pipeline file of `wazuh` module used by Filebeat.
   1. Edit the ingest pipeline.json file adding the processor
   2. Update the pipeline
-  ```
-  filebeat setup --pipelines
-  ```
+
+        ```sh
+        filebeat setup --pipelines
+        ```
+
 - using the Wazuh indexer/Elasticsearch API
   - udpate pipeline: https://www.elastic.co/guide/en/elasticsearch/reference/7.10/put-pipeline-api.html
   - get pipeline: https://www.elastic.co/guide/en/elasticsearch/reference/7.10/get-pipeline-api.html

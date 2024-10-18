@@ -27,7 +27,7 @@ To solve this problem you should follow the next instructions:
    - Execute this curl after modify the url as you need (https, auth headers, etc)
 
       ```bash
-      curl -k -XDELETE http://<ES_ip>/.kibana
+      curl -k -X DELETE http://<ES_ip>/.kibana
       ```
 
 4. Start Kibana service
@@ -37,5 +37,5 @@ To solve this problem you should follow the next instructions:
 > After each upgrad Kibana makes an alias for `.kibana` index you could try deleting all of them adding `*` at the end of the curl
 
 ```bash
-curl -k -XDELETE http://<ES_ip>/.kibana*
+curl -k -X DELETE http://<ES_ip>/.kibana*
 ```

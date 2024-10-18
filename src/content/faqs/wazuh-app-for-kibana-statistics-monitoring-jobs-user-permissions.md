@@ -23,25 +23,25 @@ The Kibana internal user requires permissions to check the existence and save da
 
 - OpenDistro for Elasticsearch:
 
-1. Create a role with the permissions for the indices used for `monitoring` and `statistics` jobs
-2. Map the Kibana internal user with the new role created.
-3. Restart Kibana
+    1. Create a role with the permissions for the indices used for `monitoring` and `statistics` jobs
+    2. Map the Kibana internal user with the new role created.
+    3. Restart Kibana
 
-```
-systemctl restart kibana
-# or
-service kibana restart
-```
+        ```sh
+        systemctl restart kibana
+        # or
+        service kibana restart
+        ```
 
 - X-Pack
   You will need to create a new user with a custom role which the required permissions.
 
-1. Create a role with the permissions for the indices used for `monitoring` and `statistics` jobs
-2. Create a new user with the same permissions for `kibana_system` and give him/her the new role you created.
-3. Restart Kibana
+    1. Create a role with the permissions for the indices used for `monitoring` and `statistics` jobs
+    2. Create a new user with the same permissions for `kibana_system` and give him/her the new role you created.
+    3. Restart Kibana
 
-```
-systemctl restart kibana
-# or
-service kibana restart
-```
+        ```sh
+        systemctl restart kibana
+        # or
+        service kibana restart
+        ```

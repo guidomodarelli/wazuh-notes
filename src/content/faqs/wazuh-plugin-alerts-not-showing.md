@@ -21,69 +21,69 @@ This could be caused by the next reasons:
 How to review the generation and indexation flow of Wazuh alerts
 
 1. Check the Wazuh manager/s service is running
-```
-systemctl status wazuh-manager
-```
 
-or
-
-```
-service wazuh-manager-master
-```
+    ```sh
+    systemctl status wazuh-manager
+    # or
+    service wazuh-manager-master
+    ```
 
 2. Ensure the Wazuh manager/s is generating new alerts. Review the `alerts.json` file where the alerts are stored.
-```
-tail -n1 /var/ossec/logs/alerts/alerts.json
-```
 
-The previous command, should display the last line of the `alerts.json` file. Review if the `timestamp` property displays a recent date.
+    ```sh
+    tail -n1 /var/ossec/logs/alerts/alerts.json
+    ```
+
+    > The previous command, should display the last line of the `alerts.json` file. Review if the `timestamp` property displays a recent date.
 
 3. Ensure the `wazuh` module is installed
-```
-ls /usr/share/filebeat/module/wazuh
-```
+
+    ```sh
+    ls /usr/share/filebeat/module/wazuh
+    ```
 
 4. Check the Filebeat service is running
-```
-systemctl status filebeat
-```
 
-or
-
-```
-service filebeat status
-```
+    ```sh
+    systemctl status filebeat
+    # or
+    service filebeat status
+    ```
 
 5. Verify the connection Filebeat-Elasticsearch
-```
-filebeat test output
-```
+
+    ```sh
+    filebeat test output
+    ```
 
 6. Review the Filebeat logs ( you could filter by errors/warnings ):
-```
-grep -iE "err|warn" /var/log/filebeat/filebeat
-```
+
+    ```sh
+    grep -iE "err|warn" /var/log/filebeat/filebeat
+    ```
 
 7. Optionally, you could review the Elasticsearch/Wazuh indexer logs too, but the problem could be identified in the above check.
 
-- Elasticsearch
-```
-grep -iE "err|warn" /var/log/elasticsearch/<CLUSTER_NAME>.log
-```
-- Wazuh indexer
-```
-grep -iE "err|warn" /var/log/wazuh-indexer/<CLUSTER_NAME>.log
-```
+      - Elasticsearch
 
-where:
-- `<CLUSTER_NAME>` is the name of your Elasticsearch/Wazuh indexer cluster.
+          ```sh
+          grep -iE "err|warn" /var/log/elasticsearch/$CLUSTER_NAME.log
+          ```
+      - Wazuh indexer
+
+          ```sh
+          grep -iE "err|warn" /var/log/wazuh-indexer/$CLUSTER_NAME.log
+          ```
+
+    > where:
+    > - `$CLUSTER_NAME` is the name of your Elasticsearch/Wazuh indexer cluster.
 
 8. Ensure the Kibana/Wazuh dashboard instance is connected to the same Elasticsearch/Wazuh indexer cluster where the data is being indexed.
 
-Problem could be caused by the filtering of data
+    Problem could be caused by the filtering of data
 
-The Wazuh plugin filters
-- alerts: by `cluster.name` or `manager.name`
-- monitoring: TODO
+    The Wazuh plugin filters
+    - alerts: by `cluster.name` or `manager.name`
+    - monitoring: TODO
 
-Did you changed the name of your cluster recently? This change could causes that you don't see previous alerts.
+    Did you changed the name of your cluster recently? This change could causes that you don't see previous alerts.

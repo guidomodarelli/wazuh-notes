@@ -24,13 +24,13 @@ Check the logs of your platform:
 
   - All logs
 
-    ```
+    ```sh
     journalctl -u kibana
     ```
 
   - Filtering by errors or warnings
 
-    ```
+    ```sh
     journalctl -u kibana | grep -iE "err|warn"
     ```
 
@@ -40,12 +40,12 @@ Check the logs of your platform:
 
   - All logs
 
-    ```
+    ```sh
     journalctl -u wazuh-dashboard
     ```
 
   - Filtering by errors or warnings
 
-    ```
+    ```sh
     journalctl -u wazuh-dashboard | grep -iE "err|warn"
     ```
