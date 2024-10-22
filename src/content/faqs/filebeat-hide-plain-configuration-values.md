@@ -24,12 +24,12 @@ Use the Filebeat keystore. More info in https://www.elastic.co/guide/en/beats/fi
 2. Add a value
 
     ```sh
-    filebeat keystore add <KEY_NAME>
+    filebeat keystore add ${KEY_NAME}
     ```
 
     where:
 
-    - `<KEY_NAME>`: is the name of key
+    - `${KEY_NAME}`: is the name of key
 
     After a prompt requires you write the value.
 
@@ -43,7 +43,7 @@ Use the Filebeat keystore. More info in https://www.elastic.co/guide/en/beats/fi
 
 3. Replace the key in the configuration file (located in `/etc/filebeat/filebeat.yml`).
 
-    Access to the value using the syntax: `${<KEY_NAME>}`.
+    Access to the value using the syntax: `${KEY_NAME}`.
 
     For example:
 
