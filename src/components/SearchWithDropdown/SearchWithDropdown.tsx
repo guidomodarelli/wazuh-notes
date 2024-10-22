@@ -1,5 +1,5 @@
-import ChevronDown from "../../assets/icons/ChevronDown";
-import SearchIcon from "../../assets/icons/SearchIcon";
+import ChevronDown from '../../assets/icons/ChevronDown';
+import SearchIcon from '../../assets/icons/SearchIcon';
 import { cn } from '../../utils/cn';
 import './index.scss';
 
@@ -21,15 +21,15 @@ const SearchWithDropdown = (props: Props) => {
     dropdownButtons = [],
   } = props;
   return (
-    <form className={cn("search-with-dropdown", props.className)}>
+    <form className={cn('search-with-dropdown', props.className)}>
       <label htmlFor="search-dropdown">{label}</label>
       {dropdownButtons.length > 0 ? (
         <>
-          <button id='dropdown-button' data-dropdown-toggle="dropdown" type="button">
+          <button id="dropdown-button" data-dropdown-toggle="dropdown" type="button">
             {dropdownButtonText}
             <ChevronDown />
           </button>
-          <div id='dropdown' className="hidden">
+          <div id="dropdown" className="hidden">
             <ul aria-labelledby="dropdown-button">
               {dropdownButtons.map((dropdownButton) => (
                 <li>
@@ -40,11 +40,11 @@ const SearchWithDropdown = (props: Props) => {
           </div>
         </>
       ) : null}
-      <div className='input-wrapper'>
+      <div className="input-wrapper">
         <input
           className={cn([{ 'has-dropdown': dropdownButtons.length > 0 }])}
           type="search"
-          id='search-dropdown'
+          id="search-dropdown"
           placeholder={placeholder}
           required
         />
