@@ -27,11 +27,11 @@ Follow the next steps:
 
     ```yml
     server.ssl.enabled: true
-    server.ssl.certificate: <PATH_TO_KIBANA_CERTIFICATE>
-    server.ssl.key: <PATH_TO_KIBANA_KEY>
+    server.ssl.certificate: {{PATH_TO_KIBANA_CERTIFICATE}}
+    server.ssl.key: {{PATH_TO_KIBANA_KEY}}
     ```
 
-    replace `<PATH_TO_KIBANA_CERTIFICATE>` and `<PATH_TO_KIBANA_KEY>` for your case.
+    replace `{{PATH_TO_KIBANA_CERTIFICATE}}` and `{{PATH_TO_KIBANA_KEY}}` for your case.
 
 
 2. Restart Kibana.
