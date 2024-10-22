@@ -48,12 +48,14 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={title}>
-  <h1>{title}</h1>
-  <div class="tags">
-    {tags.map((tag) => <Tag tag={tag} color="dark" />)}
+  <div class="content markdown">
+    <h1>{title}</h1>
+    <div class="tags">
+      {tags.map((tag) => <Tag tag={tag} color="dark" />)}
+    </div>
+    <p>{description}</p>
+    <Content />
   </div>
-  <p>{description}</p>
-  <Content />
 </Layout>
 
 <style lang="scss">

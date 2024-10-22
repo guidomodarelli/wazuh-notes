@@ -107,12 +107,13 @@ li {
     @apply mt-2;
   }
 }
+.content.markdown {
+  a {
+    @apply text-blue-500 underline;
 
-a {
-  @apply text-blue-500 underline;
-
-  &:is(.dark *) {
-    @apply text-blue-400;
+    &:is(.dark *) {
+      @apply text-blue-400;
+    }
   }
 }
 
