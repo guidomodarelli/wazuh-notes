@@ -1,7 +1,23 @@
 ---
+import { getCollection } from "astro:content";
 import Cards from "./Cards/Cards.astro";
 import SearchWithDropdown from "./SearchWithDropdown/SearchWithDropdown";
+import { type Props as CardProps } from './Card/Card.astro';
+
+const faqs = await getCollection('faqs')
+
+const cards: CardProps[] = [
+  ...faqs.map(({ data, slug }) => {
+    return {
+      title: data.title,
+      description: data.description,
+      btnHref: `/content/faqs/${slug}`,
+      tags: data.tags,
+      type: 'faq',
+    };
+  }),
+];
 ---
 
 <SearchWithDropdown className="mb-6" dropdownButtons={['Apps', 'FAQs']} />
-<Cards />
+<Cards cards={cards} />

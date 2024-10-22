@@ -1,20 +1,11 @@
 ---
-import { getCollection } from "astro:content";
 import Card, { type Props as CardProps } from '../Card/Card.astro';
 
-const faqs = await getCollection('faqs')
+interface Props {
+  cards: CardProps[];
+}
 
-const cards: CardProps[] = [
-  ...faqs.map(({ data, slug }) => {
-    return {
-      title: data.title,
-      description: data.description,
-      btnHref: `/content/faqs/${slug}`,
-      tags: data.tags,
-      type: 'faq',
-    };
-  }),
-];
+const { cards } = Astro.props;
 ---
 
 <div class="cards">
