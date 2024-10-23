@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Cards from "./Cards/Cards.astro";
-import SearchWithDropdown from "./SearchWithDropdown/SearchWithDropdown";
+import SearchWithDropdown from "./SearchWithDropdown.astro";
 import { type Props as CardProps } from './Card/Card.astro';
 
 const faqs = await getCollection('faqs')
@@ -19,5 +19,5 @@ const cards: CardProps[] = [
 ];
 ---
 
-<SearchWithDropdown className="mb-6" dropdownButtons={['Apps', 'FAQs']} />
+<SearchWithDropdown class="mb-6" dropdownButtons={['Apps', 'FAQs']} />
 <Cards cards={cards} />
