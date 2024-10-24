@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import Cards from "./Cards/Cards.astro";
+import Cards from "./Cards.astro";
 import SearchWithDropdown from "./SearchWithDropdown.astro";
-import { type Props as CardProps } from './Card/Card.astro';
+import { type Props as CardProps } from './Card.astro';
 
 const faqs = await getCollection('faqs')
 
