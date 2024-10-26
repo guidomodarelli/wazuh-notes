@@ -22,7 +22,7 @@ const {
 } = Astro.props;
 ---
 
-<form class={cn('search-with-dropdown', className)}>
+<form id="search-dropdown-form" class={cn('search-with-dropdown', className)}>
   <label for="search-dropdown">{label}</label>
   {
     dropdownButtons.length > 0 &&
