@@ -12,10 +12,10 @@ export interface Props {
   slug?: string;
 }
 
-const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = [] } = Astro.props;
+const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = [], slug } = Astro.props;
 ---
 
-<div class="card" data-card={JSON.stringify(Astro.props)}>
+<div class="card" data-card={slug}>
   <div class="card-header">
     <h5 class="title">{title}</h5>
   </div>
