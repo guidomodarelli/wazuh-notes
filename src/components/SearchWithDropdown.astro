@@ -25,7 +25,7 @@ const {
 <form class={cn('search-with-dropdown', className)}>
   <label for="search-dropdown">{label}</label>
   {
-    dropdownButtons.length > 0 ?
+    dropdownButtons.length > 0 &&
       <>
         <button id="dropdown-button" data-dropdown-toggle="dropdown" type="button">
           {dropdownButtonText}
@@ -41,7 +41,6 @@ const {
           </ul>
         </div>
       </>
-    : null
   }
   <div class="input-wrapper">
     <input
