@@ -26,10 +26,7 @@ const cards: CardProps[] = [
   };
 
   const resetDisplay = (card: HTMLElement) => {
-    card.style = {
-      ...card.style,
-      display: undefined,
-    };
+    card.style.display = 'iniherit';
   };
 
   const searchForm = document.querySelector('#search-dropdown-form') as HTMLFormElement;
