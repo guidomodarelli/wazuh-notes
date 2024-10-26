@@ -14,7 +14,7 @@ export interface Props {
 const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = [] } = Astro.props;
 ---
 
-<div class="card">
+<div class="card" data-card={JSON.stringify(Astro.props)}>
   <div class="card-header">
     <h5 class="title">{title}</h5>
   </div>
