@@ -9,6 +9,7 @@ export interface Props {
   btnHref?: string;
   type: string;
   tags?: string[];
+  slug?: string;
 }
 
 const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = [] } = Astro.props;
