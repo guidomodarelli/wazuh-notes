@@ -45,10 +45,6 @@ pre:has(code) {
   @apply rounded-lg p-4 mb-3;
 }
 
-pre > code > .line {
-  text-wrap: nowrap;
-}
-
 a,
 code {
   /* wrap lines */
