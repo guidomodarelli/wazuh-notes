@@ -67,19 +67,18 @@ const dropdownButtons: DropdownButton[] = [
 
     const filterCardsByType = (dropdownButtonData: DropdownButton) => {
       const cards = document.querySelectorAll('[data-card]') as NodeListOf<HTMLElement>;
-      cards.forEach((card) => {
-        const shouldShowCard = (cardType: string | undefined, key: string): boolean => {
-          return key === 'all' || cardType === key;
-        };
 
-        cards.forEach((card) => {
-          const cardType = card.dataset.cardType;
-          if (shouldShowCard(cardType, dropdownButtonData.key)) {
-            delete card.dataset.cardDontShowOnType;
-          } else {
-            card.dataset.cardDontShowOnType = '';
-          }
-        });
+      const shouldShowCard = (cardType: string | undefined, key: string): boolean => {
+        return key === 'all' || cardType === key;
+      };
+
+      cards.forEach((card) => {
+        const cardType = card.dataset.cardType;
+        if (shouldShowCard(cardType, dropdownButtonData.key)) {
+          delete card.dataset.cardDontShowOnType;
+        } else {
+          card.dataset.cardDontShowOnType = '';
+        }
       });
     };
 
