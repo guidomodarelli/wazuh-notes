@@ -12,10 +12,10 @@ export interface Props {
   slug?: string;
 }
 
-const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = [] } = Astro.props;
+const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = [], type } = Astro.props;
 ---
 
-<div class="card" data-card={JSON.stringify(Astro.props)}>
+<div class="card" data-card={JSON.stringify(Astro.props)} data-card-type={type}>
   <div class="card-header">
     <h5 class="title">{title}</h5>
   </div>
@@ -38,7 +38,10 @@ const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = 
 </div>
 
 <style>
-  [data-card-hidden] {
+  [data-card-dont-match-search] {
+    display: none;
+  }
+  [data-card-dont-show-on-type] {
     display: none;
   }
 </style>
