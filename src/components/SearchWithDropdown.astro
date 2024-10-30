@@ -3,18 +3,21 @@ import ChevronDown from '../assets/icons/ChevronDown.astro';
 import SearchIcon from '../assets/icons/SearchIcon.astro';
 import { cn } from '../utils/cn';
 
+export interface DropdownButton {
+  key: string;
+  label: string;
+}
+
 interface Props {
   label?: string;
-  dropdownButtonText?: string;
   submitButton?: string;
   placeholder?: string;
-  dropdownButtons?: string[];
+  dropdownButtons?: DropdownButton[];
   class?: string;
 }
 
 const {
   label,
-  dropdownButtonText = 'All',
   submitButton = 'Search',
   placeholder = 'Write here...',
   dropdownButtons = [],
@@ -26,21 +29,21 @@ const {
   <label for="search-dropdown">{label}</label>
   {
     dropdownButtons.length > 0 &&
-      <>
+      <div class="dropdown-wrapper">
         <button id="dropdown-button" data-dropdown-toggle="dropdown" type="button">
-          {dropdownButtonText}
+          {dropdownButtons[0].label}
           <ChevronDown class="ms-2.5" />
         </button>
-        <div id="dropdown" class="hidden">
+        <div id="dropdown" class="absolute hidden">
           <ul aria-labelledby="dropdown-button">
             {dropdownButtons.map((dropdownButton) => (
-              <li>
-                <button type="button">{dropdownButton}</button>
+              <li data-dropdown-button={JSON.stringify(dropdownButton)}>
+                <button type="button">{dropdownButton.label}</button>
               </li>
             ))}
           </ul>
         </div>
-      </>
+      </div>
   }
   <div class="input-wrapper">
     <input
@@ -98,8 +101,13 @@ const {
       }
     }
 
+    .dropdown-wrapper {
+      @apply relative;
+    }
+
     #dropdown {
       @apply z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44;
+      transform: translate(-25%, 0.5rem);
 
       &:is(.dark *) {
         @apply bg-gray-700;
