@@ -52,49 +52,54 @@ const dropdownButtons: DropdownButton[] = [
     dropdown.classList.add('hidden');
   };
 
-  const addEventListenerToDropdownButtons = () => {
+  const initializeDropdownListeners = () => {
     const dropdownButton = document.querySelector('#dropdown-button') as HTMLElement;
     const dropdown = document.querySelector('#dropdown') as HTMLElement;
     const dropdownButtons = document.querySelectorAll('[data-dropdown-button]') as NodeListOf<HTMLElement>;
 
-    dropdownButton.addEventListener('click', () => {
+    const toggleDropdownVisibility = () => {
       if (dropdown.classList.contains('hidden')) {
         showDropdown(dropdown);
       } else {
         hideDropdown(dropdown);
       }
-    });
+    };
 
-    // if the user clicks on a dropdown button, hide the dropdown and filter the cards by type
-    dropdownButtons.forEach((dropdownButton) => {
-      dropdownButton.addEventListener('click', () => {
-        const dropdownButtonData = JSON.parse(
-          dropdownButton.dataset.dropdownButton ?? '{}',
-        ) as DropdownButton;
-        // filter cards by type
-        const cards = document.querySelectorAll('[data-card]') as NodeListOf<HTMLElement>;
+    const filterCardsByType = (dropdownButtonData: DropdownButton) => {
+      const cards = document.querySelectorAll('[data-card]') as NodeListOf<HTMLElement>;
+      cards.forEach((card) => {
+        const shouldShowCard = (cardType: string | undefined, key: string): boolean => {
+          return key === 'all' || cardType === key;
+        };
+
         cards.forEach((card) => {
-          if (dropdownButtonData.key === 'all') {
-            delete card.dataset.cardDontShowOnType;
-            return;
-          }
           const cardType = card.dataset.cardType;
-          if (cardType === dropdownButtonData.key) {
+          if (shouldShowCard(cardType, dropdownButtonData.key)) {
             delete card.dataset.cardDontShowOnType;
           } else {
             card.dataset.cardDontShowOnType = '';
           }
         });
+      });
+    };
+
+    const handleDropdownButtonClick = (button: HTMLElement) => {
+      button.addEventListener('click', () => {
+        const dropdownButtonData = JSON.parse(button.dataset.dropdownButton ?? '{}') as DropdownButton;
+        filterCardsByType(dropdownButtonData);
         hideDropdown(dropdown);
       });
-    });
+    };
 
-    // if the user clicks outside the dropdown or the dropdown button, hide the dropdown
-    document.addEventListener('click', (event) => {
+    const handleDocumentClick = (event: MouseEvent) => {
       if (!dropdown.contains(event.target as Node) && !dropdownButton.contains(event.target as Node)) {
         hideDropdown(dropdown);
       }
-    });
+    };
+
+    dropdownButton.addEventListener('click', toggleDropdownVisibility);
+    dropdownButtons.forEach(handleDropdownButtonClick);
+    document.addEventListener('click', handleDocumentClick);
   };
 
   const setupSearch = () => {
@@ -141,7 +146,7 @@ const dropdownButtons: DropdownButton[] = [
   // Execute setupSearch when the page is loaded or when the user returns to the history
   window.addEventListener('DOMContentLoaded', () => {
     setupSearch();
-    addEventListenerToDropdownButtons();
+    initializeDropdownListeners();
   });
   window.addEventListener('popstate', () => {
     location.reload();
