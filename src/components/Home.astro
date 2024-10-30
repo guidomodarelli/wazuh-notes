@@ -1,35 +1,103 @@
 ---
 import { getCollection } from 'astro:content';
 import Cards from './Cards.astro';
-import SearchWithDropdown from './SearchWithDropdown.astro';
+import SearchWithDropdown, { type DropdownButton } from './SearchWithDropdown.astro';
 import { type Props as CardProps } from './Card.astro';
 
 const faqs = await getCollection('faqs');
 
 const cards: CardProps[] = [
-  ...faqs.map(({ data, slug, collection }) => {
+  ...faqs.map(({ data, slug, collection }, index) => {
     return {
       title: data.title,
       description: data.description,
       btnHref: `/content/faqs/${slug}`,
       tags: data.tags,
-      type: collection,
+      type: index === 0 ? 'apps' : collection,
       slug,
     };
   }),
 ];
+
+const dropdownButtons: DropdownButton[] = [
+  {
+    key: 'all',
+    label: 'All',
+  },
+  {
+    key: 'apps',
+    label: 'Apps',
+  },
+  {
+    key: 'faqs',
+    label: 'FAQs',
+  },
+];
 ---
 
 <script>
+  import type { DropdownButton } from './SearchWithDropdown.astro';
+
+  const includesText = (searchQuery: string) => {
+    return (text?: string) => text?.toLowerCase().includes(searchQuery?.toLowerCase());
+  };
+
+  const showDropdown = (dropdown: HTMLElement) => {
+    dropdown.classList.remove('hidden');
+    dropdown.classList.add('block');
+  };
+
+  const hideDropdown = (dropdown: HTMLElement) => {
+    dropdown.classList.remove('block');
+    dropdown.classList.add('hidden');
+  };
+
+  const addEventListenerToDropdownButtons = () => {
+    const dropdownButton = document.querySelector('#dropdown-button') as HTMLElement;
+    const dropdown = document.querySelector('#dropdown') as HTMLElement;
+    const dropdownButtons = document.querySelectorAll('[data-dropdown-button]') as NodeListOf<HTMLElement>;
+
+    dropdownButton.addEventListener('click', () => {
+      if (dropdown.classList.contains('hidden')) {
+        showDropdown(dropdown);
+      } else {
+        hideDropdown(dropdown);
+      }
+    });
+
+    // if the user clicks on a dropdown button, hide the dropdown and filter the cards by type
+    dropdownButtons.forEach((dropdownButton) => {
+      dropdownButton.addEventListener('click', () => {
+        const dropdownButtonData = JSON.parse(
+          dropdownButton.dataset.dropdownButton ?? '{}',
+        ) as DropdownButton;
+        // filter cards by type
+        const cards = document.querySelectorAll('[data-card]') as NodeListOf<HTMLElement>;
+        cards.forEach((card) => {
+          if (dropdownButtonData.key === 'all') {
+            delete card.dataset.cardDontShowOnType;
+            return;
+          }
+          const cardType = card.dataset.cardType;
+          if (cardType === dropdownButtonData.key) {
+            delete card.dataset.cardDontShowOnType;
+          } else {
+            card.dataset.cardDontShowOnType = '';
+          }
+        });
+        hideDropdown(dropdown);
+      });
+    });
+
+    // if the user clicks outside the dropdown or the dropdown button, hide the dropdown
+    document.addEventListener('click', (event) => {
+      if (!dropdown.contains(event.target as Node) && !dropdownButton.contains(event.target as Node)) {
+        hideDropdown(dropdown);
+      }
+    });
+  };
+
   const setupSearch = () => {
-    const includesText = (searchQuery: string) => {
-      return (text?: string) => text?.toLowerCase().includes(searchQuery?.toLowerCase());
-    };
-
-    const resetDisplay = (card: HTMLElement) => {
-      delete card.dataset.cardHidden;
-    };
-
     const searchForm = document.querySelector('#search-dropdown-form') as HTMLFormElement;
 
     searchForm.addEventListener('submit', (event) => {
@@ -53,12 +121,12 @@ const cards: CardProps[] = [
             includesText(inputText)(description) ||
             tags?.some(includesText(inputText))
           ) {
-            resetDisplay(card);
+            delete card.dataset.cardDontMatchSearch;
           } else {
-            card.dataset.cardHidden = '';
+            card.dataset.cardDontMatchSearch = '';
           }
         } else {
-          resetDisplay(card);
+          delete card.dataset.cardDontMatchSearch;
         }
       });
     });
@@ -70,14 +138,15 @@ const cards: CardProps[] = [
     }
   };
 
-  // Ejecuta setupSearch cuando la página se carga o al volver desde el historial
+  // Execute setupSearch when the page is loaded or when the user returns to the history
   window.addEventListener('DOMContentLoaded', () => {
     setupSearch();
+    addEventListenerToDropdownButtons();
   });
   window.addEventListener('popstate', () => {
     location.reload();
   });
 </script>
 
-<SearchWithDropdown class="mb-6" dropdownButtons={['Apps', 'FAQs']} />
+<SearchWithDropdown class="mb-6" dropdownButtons={dropdownButtons} />
 <Cards cards={cards} />
