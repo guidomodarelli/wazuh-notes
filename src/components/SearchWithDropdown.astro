@@ -31,7 +31,7 @@ const {
     dropdownButtons.length > 0 &&
       <div class="dropdown-wrapper">
         <button id="dropdown-button" data-dropdown-toggle="dropdown" type="button">
-          {dropdownButtons[0].label}
+          <span>{dropdownButtons[0].label}</span>
           <ChevronDown class="ms-2.5" />
         </button>
         <div id="dropdown" class="absolute hidden">
