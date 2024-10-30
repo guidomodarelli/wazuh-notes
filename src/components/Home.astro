@@ -7,13 +7,13 @@ import { type Props as CardProps } from './Card.astro';
 const faqs = await getCollection('faqs');
 
 const cards: CardProps[] = [
-  ...faqs.map(({ data, slug, collection }, index) => {
+  ...faqs.map(({ data, slug, collection }) => {
     return {
       title: data.title,
       description: data.description,
       btnHref: `/content/faqs/${slug}`,
       tags: data.tags,
-      type: index === 0 ? 'apps' : collection,
+      type: collection,
       slug,
     };
   }),
