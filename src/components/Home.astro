@@ -104,34 +104,35 @@ const dropdownButtons: DropdownButton[] = [
 
   const setupSearch = () => {
     const searchForm = document.querySelector('#search-dropdown-form') as HTMLFormElement;
+    const searchInput = document.querySelector('#search-dropdown') as HTMLInputElement;
+    const cards = document.querySelectorAll('[data-card]') as NodeListOf<HTMLElement>;
 
     searchForm.addEventListener('submit', (event) => {
       event.preventDefault();
     });
 
-    const searchInput = document.querySelector('#search-dropdown') as HTMLInputElement;
-    const cards = document.querySelectorAll('[data-card]') as NodeListOf<HTMLElement>;
-
     searchInput.focus();
 
     searchInput.addEventListener('input', (event) => {
-      const inputText = (event?.target as HTMLInputElement)?.value;
-      cards.forEach((card) => {
-        const { title, description, tags, type } = JSON.parse(
+      const inputText = (event.target as HTMLInputElement)?.value.toLowerCase().trim();
+
+      const doesCardMatchSearch = (card: HTMLElement): boolean => {
+        const { title, description, tags } = JSON.parse(
           card.dataset.card ?? '{}',
         ) as import('./Card.astro').Props;
-        if (inputText) {
-          if (
-            includesText(inputText)(title) ||
-            includesText(inputText)(description) ||
-            tags?.some(includesText(inputText))
-          ) {
-            delete card.dataset.cardDontMatchSearch;
-          } else {
-            card.dataset.cardDontMatchSearch = '';
-          }
-        } else {
+        return (
+          includesText(inputText)(title) ||
+          includesText(inputText)(description) ||
+          tags?.some(includesText(inputText)) ||
+          false
+        );
+      };
+
+      cards.forEach((card) => {
+        if (!inputText || doesCardMatchSearch(card)) {
           delete card.dataset.cardDontMatchSearch;
+        } else {
+          card.dataset.cardDontMatchSearch = '';
         }
       });
     });
