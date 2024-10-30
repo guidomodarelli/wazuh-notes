@@ -62,7 +62,7 @@ code {
 
 ul,
 ol {
-  @apply list-outside ps-10;
+  @apply list-outside ps-10 mb-6;
 
   li {
     @apply mb-2;
