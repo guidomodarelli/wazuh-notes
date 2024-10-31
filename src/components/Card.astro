@@ -15,7 +15,7 @@ export interface Props {
 const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = [], type } = Astro.props;
 ---
 
-<div class="card" data-card={JSON.stringify(Astro.props)} data-card-type={type}>
+<div class="card" data-card={JSON.stringify({ title, description, tags })} data-card-type={type}>
   <div class="card-header">
     <h5 class="title">{title}</h5>
   </div>
