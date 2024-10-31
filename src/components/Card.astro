@@ -1,6 +1,6 @@
 ---
 import ArrowRight from '../assets/icons/ArrowRight.astro';
-import Tag from "./Tag.astro";
+import Tag from './Tag.astro';
 
 export interface Props {
   title?: string;
@@ -38,9 +38,7 @@ const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = 
 </div>
 
 <style>
-  [data-card-dont-match-search] {
-    display: none;
-  }
+  [data-card-dont-match-search],
   [data-card-dont-show-on-type] {
     display: none;
   }
