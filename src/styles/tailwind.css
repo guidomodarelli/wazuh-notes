@@ -41,7 +41,7 @@ p {
   }
 }
 
-pre:has(code) {
+pre:has(> code) {
   @apply rounded-lg p-4 mb-3;
 }
 
@@ -62,7 +62,7 @@ code {
 
 ul,
 ol {
-  @apply list-outside ps-10 mb-6;
+  @apply list-outside ps-10;
 
   li {
     @apply mb-2;
@@ -104,6 +104,11 @@ li {
   }
 }
 .content.markdown {
+  ul,
+  ol {
+    @apply mb-6;
+  }
+
   a {
     @apply text-blue-500 underline;
 
