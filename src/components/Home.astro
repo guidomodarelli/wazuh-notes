@@ -3,6 +3,13 @@ import { getCollection } from 'astro:content';
 import Cards from './Cards.astro';
 import SearchWithDropdown, { type DropdownButton } from './SearchWithDropdown.astro';
 import { type Props as CardProps } from './Card.astro';
+import { glob } from 'glob';
+import path from "path";
+
+const adocRelativeFaqPaths = await glob('src/content/faqs/*.adoc');
+const adocFaqFileNames = adocRelativeFaqPaths.map((relativeFaqPath) => path.basename(relativeFaqPath, '.adoc'));
+// https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
+const adocFaqs = await Promise.all(adocFaqFileNames.map((absoluteFaqPath) => import(`../content/faqs/${absoluteFaqPath}.adoc`)));
 
 const faqs = await getCollection('faqs');
 
@@ -15,6 +22,16 @@ const cards: CardProps[] = [
       tags: data.tags,
       type: collection,
       slug,
+    };
+  }),
+  ...adocFaqs.map((adoc) => {
+    return {
+      title: adoc.frontmatter.asciidoc.doctitle,
+      description: adoc.frontmatter.asciidoc.description,
+      btnHref: `/content/faqs/${adoc.frontmatter.asciidoc.docname}`,
+      tags: JSON.parse(adoc.frontmatter.asciidoc.tags ?? '[]'),
+      type: 'faqs',
+      slug: adoc.title,
     };
   }),
 ];
