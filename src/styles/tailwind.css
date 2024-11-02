@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-gray-50 min-h-full p-8 flex flex-col items-center;
+
+  &:is(.dark *) {
+    @apply bg-gray-900;
+  }
+
+  #root, .article {
+    @apply max-w-screen-2xl w-full;
+  }
+}
+
 h1,
 h2,
 h3,
