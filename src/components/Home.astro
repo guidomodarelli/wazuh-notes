@@ -166,13 +166,10 @@ const dropdownButtons: DropdownButton[] = [
     }
   };
 
-  // Execute setupSearch when the page is loaded or when the user returns to the history
+  // Execute setupSearch when the page is loaded
   window.addEventListener('DOMContentLoaded', () => {
     setupSearch();
     initializeDropdownListeners();
-  });
-  window.addEventListener('popstate', () => {
-    location.reload();
   });
 </script>
 
