@@ -1,9 +1,8 @@
 :date: 2022/07/20
 :title: Customize the plugin title and plugin category label in the sidebar
-:author:
+:author: Desvelao
 :description: Customize the plugin title and plugin category label in the sidebar
 :tags: ["wazuh-app","wazuh-app-customization"]
-:version:
 
 == The next modifications are done in the production plugin code.
 
@@ -60,12 +59,12 @@ Change: - plugin title: `Custom plugin` - plugin category label: `Custom categor
 [source,sh,subs="attributes+"]
 ----
 # Change plugin title
-sed -i "s|title:\"Wazuh\"|title:\"Custom plugin\"|g" "{wazuh-plugin-static-path}.js"
+sed -i "s|title:\"Wazuh\"|title:\"Custom plugin\"|g" "{wazuh-plugin-static-path}"
 
 # Change plugin category label
-sed -i "s|label:\"Wazuh\"|label:\"Custom category\"|g" "{wazuh-plugin-static-path}.js"
+sed -i "s|label:\"Wazuh\"|label:\"Custom category\"|g" "{wazuh-plugin-static-path}"
 
 # Build compressed files
-gzip -c "{wazuh-plugin-static-path}.js" > "{wazuh-plugin-static-path}.js.gz"
-brotli -c "{wazuh-plugin-static-path}.js" > "{wazuh-plugin-static-path}.js.br"
+gzip -c "{wazuh-plugin-static-path}" > "{wazuh-plugin-static-path}.gz"
+brotli -c "{wazuh-plugin-static-path}" > "{wazuh-plugin-static-path}.br"
 ----
