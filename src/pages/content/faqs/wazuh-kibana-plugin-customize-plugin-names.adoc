@@ -1,0 +1,64 @@
+=== The next modifications are done in the production plugin code.
+
+==== Plugin title
+
+:wazuh-plugin-path: target/public/wazuh.plugin.js
+:wazuh-plugin-dynamic-path: ${PATH_TO_WAZUH_PLUGIN_ROOT}/{wazuh-plugin-path}
+:wazuh-plugin-static-path: /usr/share/wazuh-dashboard/plugins/wazuh/{wazuh-plugin-path}
+
+[source,sh,subs="attributes+"]
+----
+sed -i "s|title:\"Wazuh\"|title:\"${PLUGIN_TITLE}\"|g" "{wazuh-plugin-dynamic-path}"
+----
+
+where:
+
+- `+${PLUGIN_TITLE}+` plugin title.
+- `+${PATH_TO_WAZUH_PLUGIN_ROOT}+` path to the Wazuh plugin root.
+
+==== Plugin category label
+
+[source,sh,subs="attributes+"]
+----
+sed -i "s|label:\"Wazuh\"|label:\"${PLUGIN_CATEGORY_LABEL}\"|g" "{wazuh-plugin-dynamic-path}"
+----
+
+where:
+
+- `+${PLUGIN_CATEGORY_LABEL}+` plugin category label.
+- `+${PATH_TO_WAZUH_PLUGIN_ROOT}+` path to the Wazuh plugin root.
+
+____
+Any changes in `+wazuh.plugin.js+` (plugin title, plugin category label or both) requires to building the compressed files. It requires `+gzip+` and `+brotli+` packages.
+____
+
+[source,sh,subs="attributes+"]
+----
+gzip -c "{wazuh-plugin-dynamic-path}" > "{wazuh-plugin-dynamic-path}.gz"
+brotli -c "{wazuh-plugin-dynamic-path}" > "{wazuh-plugin-dynamic-path}.br"
+----
+
+where:
+
+- `+${PATH_TO_WAZUH_PLUGIN_ROOT}+` path to the Wazuh plugin root.
+
+____
+The `wazuh.plugin.js` file path can change in the commands if it use relative path. The guide uses absolute paths.
+____
+
+==== Example
+
+Change: - plugin title: `Custom plugin` - plugin category label: `Custom category`
+
+[source,sh,subs="attributes+"]
+----
+# Change plugin title
+sed -i "s|title:\"Wazuh\"|title:\"Custom plugin\"|g" "{wazuh-plugin-static-path}.js"
+
+# Change plugin category label
+sed -i "s|label:\"Wazuh\"|label:\"Custom category\"|g" "{wazuh-plugin-static-path}.js"
+
+# Build compressed files
+gzip -c "{wazuh-plugin-static-path}.js" > "{wazuh-plugin-static-path}.js.gz"
+brotli -c "{wazuh-plugin-static-path}.js" > "{wazuh-plugin-static-path}.js.br"
+----
