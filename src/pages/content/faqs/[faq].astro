@@ -32,6 +32,7 @@ export function getStaticPaths() {
     { params: { faq: 'wazuh-dashboard-missing-plugins' } },
     { params: { faq: 'wazuh-dashboard-set-home-page' } },
     { params: { faq: 'wazuh-indexer-add-node-to-cluster' } },
+    { params: { faq: 'wazuh-kibana-plugin-customize-plugin-names' } },
     { params: { faq: 'wazuh-plugin-alerts-not-showing' } },
     { params: { faq: 'wazuh-server-eps' } },
   ];
@@ -40,10 +41,19 @@ export function getStaticPaths() {
 const { faq } = Astro.params;
 const entry = await getEntry('faqs', faq);
 
-if (!entry) return;
+let title: string, description: string, tags: string[];
+let Content: any;
 
-const { title, tags, description } = entry.data;
-const { Content } = await entry.render();
+if (entry) {
+  ({ title, tags, description } = entry.data);
+  ({ Content } = await entry.render());
+} else {
+  const adoc = await import(`../../../content/faqs/${faq}.adoc`);
+  title = adoc.frontmatter.asciidoc.doctitle;
+  description = adoc.frontmatter.asciidoc.description;
+  tags = JSON.parse(adoc.frontmatter.asciidoc.tags ?? '[]');
+  Content = adoc.Content;
+}
 ---
 
 <Layout title={title}>
