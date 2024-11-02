@@ -1,6 +1,13 @@
-=== The next modifications are done in the production plugin code.
+:date: 2022/07/20
+:title: Customize the plugin title and plugin category label in the sidebar
+:author:
+:description: Customize the plugin title and plugin category label in the sidebar
+:tags: ["wazuh-app","wazuh-app-customization"]
+:version:
 
-==== Plugin title
+== The next modifications are done in the production plugin code.
+
+=== Plugin titles
 
 :wazuh-plugin-path: target/public/wazuh.plugin.js
 :wazuh-plugin-dynamic-path: ${PATH_TO_WAZUH_PLUGIN_ROOT}/{wazuh-plugin-path}
@@ -16,7 +23,7 @@ where:
 - `+${PLUGIN_TITLE}+` plugin title.
 - `+${PATH_TO_WAZUH_PLUGIN_ROOT}+` path to the Wazuh plugin root.
 
-==== Plugin category label
+=== Plugin category label
 
 [source,sh,subs="attributes+"]
 ----
@@ -46,7 +53,7 @@ ____
 The `wazuh.plugin.js` file path can change in the commands if it use relative path. The guide uses absolute paths.
 ____
 
-==== Example
+=== Example
 
 Change: - plugin title: `Custom plugin` - plugin category label: `Custom category`
 
