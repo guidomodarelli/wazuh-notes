@@ -41,7 +41,8 @@ p {
   }
 }
 
-pre:has(> code) {
+.article pre > code,
+.content.markdown pre:has(> code) {
   @apply rounded-lg p-4 mb-3;
 }
 
