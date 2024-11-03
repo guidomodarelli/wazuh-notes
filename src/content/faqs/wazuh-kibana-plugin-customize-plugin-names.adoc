@@ -3,6 +3,7 @@
 :author: Desvelao
 :description: Customize the plugin title and plugin category label in the sidebar
 :tags: ["wazuh-app","wazuh-app-customization"]
+:version:
 
 == The next modifications are done in the production plugin code.
 
