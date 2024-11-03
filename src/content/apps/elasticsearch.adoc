@@ -1,0 +1,125 @@
+:appname: Elasticsearch
+:date: 2024/11/03
+:author: Desvelao
+:description: Search engine based on the Lucene library. It provides a distributed, multitenant-capable full-text search engine with an HTTP web interface and schema-free JSON documents
+:doclink: https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+
+.Info
+[%collapsible%open]
+====
+|===
+| Description | Value
+
+| Installation folder
+| `/usr/share/elasticsearch`
+
+| Configuration file (package)
+| `/etc/elasticsearch/elasticsearch.yml`
+
+| Configuration file (Docker/zip)
+| `<ELASTICSEARCH_HOME>/config/elasticsearch.yml`
+
+| Logs
+| `/var/log/elasticsearch/<CLUSTER_NAME>.log`
+
+| Logs
+| `journalctl -u elasticsearch`
+
+| Port API
+| `9200`
+
+| Port Service
+| `9600`
+
+| Service
+| `elasticsearch`
+
+| JVM options file (package)
+| `/etc/elasticsearch/jvm.options`
+
+| JVM options file (Docker/zip)
+| `<ELASTICSEARCH_HOME>/config/jvm.options`
+|===
+====
+
+.Backup
+[%collapsible]
+====
+Backup folders/files
+
+|===
+| Key | File
+
+| Package - Configuration
+| `/etc/elasticsearch`
+
+| Package - Certificates - Wazuh installation guide
+| `/etc/elasticsearch/certs`
+
+| Docker - Configuration
+| `/usr/share/elasticsearch/config`
+
+| Certificates
+| All certificates files
+
+| Alternative - Configuration
+| `$ES_PATH_CONF directory`
+
+| OpenDistro for Elasticsearch - Initial configuration
+| `/usr/share/elasticsearch/plugins/opendistro_security/securityconfig`
+|===
+====
+
+.Commands
+[%collapsible]
+====
+
+> Service start - systemctl
+>
+> `systemctl start elasticsearch`
+
+> Service start - service
+>
+> `service elasticsearch start`
+
+> Service stop - systemctl
+>
+> `systemctl stop elasticsearch`
+
+> Service stop - service
+>
+> `service elasticsearch stop`
+
+> Get version
+>
+> `<ELASTICSEARCH_PATH>/bin/elasticsearch --version`
+
+> Plugins - List
+>
+> `<ELASTICSEARCH_PATH>/bin/elasticsearch-plugin list`
+====
+
+.Debug
+[%collapsible]
+====
+
+> Service status - systemctl
+>
+> `systemctl status elasticsearch`
+
+> Service status - service
+>
+> `service elasticsearch status`
+
+> Logs (journalctl) - get all logs
+>
+> `journalctl -u elasticsearch`
+
+> Logs (journalctl) - get logs filtering by errors or warnings
+>
+> `journalctl -u elasticsearch | grep -iE "err|warn"`
+
+> Logs (journalctl) - get logs filtering by errors or warnings with context
+>
+> `journalctl -u elasticsearch | grep -iE "err|warn" -C 10`
+====
