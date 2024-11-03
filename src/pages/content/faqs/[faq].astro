@@ -1,40 +1,18 @@
 ---
-import { getEntry } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import Tag from '../../../components/Tag.astro';
+import { getAdocPaths } from '../../../content/get-adoc-paths';
 
-export function getStaticPaths() {
+
+
+export async function getStaticPaths() {
+  const adocFaqFileNames = await getAdocPaths();
+  const faqs = await getCollection('faqs');
+
   return [
-    { params: { faq: 'backup-alerting-data' } },
-    { params: { faq: 'elasticsearch-circuit-breaker-exception' } },
-    { params: { faq: 'elasticsearch-document-level-security' } },
-    { params: { faq: 'elasticsearch-reached-shards-limit-by-node' } },
-    { params: { faq: 'enable-audit-logs' } },
-    { params: { faq: 'enable-wazuh-archives' } },
-    { params: { faq: 'erase-corrupted-kibana-index' } },
-    { params: { faq: 'filebeat-hide-plain-configuration-values' } },
-    { params: { faq: 'filebeat-modify-ingest-pipeline' } },
-    { params: { faq: 'filebeat-wrong-distribution' } },
-    { params: { faq: 'filter-searches-in-discover-using-ip-ranges-or-network-mask-with-dql' } },
-    { params: { faq: 'kibana-secure-security-authentication-cookie' } },
-    { params: { faq: 'logs-retention' } },
-    { params: { faq: 'logs-rotation' } },
-    { params: { faq: 'monitor-network-devices' } },
-    { params: { faq: 'odfe-user-permissions-saved-objects' } },
-    { params: { faq: 'opensearch-restrict-internal-user-password' } },
-    { params: { faq: 'remove-no-secure-url-browser' } },
-    { params: { faq: 'reporting-error-missing-dependencies' } },
-    { params: { faq: 'separate-conditionally-events-to-different-indices' } },
-    { params: { faq: 'server-is-not-ready-yet' } },
-    { params: { faq: 'wazuh-app-for-kibana-missing-token-cookie' } },
-    { params: { faq: 'wazuh-app-for-kibana-permission-deploy-new-agent' } },
-    { params: { faq: 'wazuh-app-for-kibana-statistics-monitoring-jobs-user-permissions' } },
-    { params: { faq: 'wazuh-dashboard-missing-plugins' } },
-    { params: { faq: 'wazuh-dashboard-set-home-page' } },
-    { params: { faq: 'wazuh-indexer-add-node-to-cluster' } },
-    { params: { faq: 'wazuh-kibana-plugin-customize-plugin-names' } },
-    { params: { faq: 'wazuh-plugin-alerts-not-showing' } },
-    { params: { faq: 'wazuh-server-eps' } },
+    ...adocFaqFileNames.map((adocFaqFileName) => ({ params: { faq: adocFaqFileName } })),
+    ...faqs.map((faq) => ({ params: { faq: faq.slug } }))
   ];
 }
 
