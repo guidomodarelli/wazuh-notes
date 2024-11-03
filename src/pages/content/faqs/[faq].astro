@@ -4,15 +4,13 @@ import Layout from '../../../layouts/Layout.astro';
 import Tag from '../../../components/Tag.astro';
 import { getAdocPaths } from '../../../content/get-adoc-paths';
 
-
-
 export async function getStaticPaths() {
   const adocFaqFileNames = await getAdocPaths();
   const faqs = await getCollection('faqs');
 
   return [
     ...adocFaqFileNames.map((adocFaqFileName) => ({ params: { faq: adocFaqFileName } })),
-    ...faqs.map((faq) => ({ params: { faq: faq.slug } }))
+    ...faqs.map((faq) => ({ params: { faq: faq.slug } })),
   ];
 }
 
