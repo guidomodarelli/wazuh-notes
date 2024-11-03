@@ -15,12 +15,14 @@ const adocFaqs = await Promise.all(
 
 const faqs = await getCollection(COLLECTION.FAQS);
 
+const FAQ_HREF_PREFIX = `/content/${COLLECTION.FAQS}`;
+
 const cards: CardProps[] = [
   ...faqs.map(({ data, slug, collection }) => {
     return {
       title: data.title,
       description: data.description,
-      btnHref: `/content/${COLLECTION.FAQS}/${slug}`,
+      btnHref: `${FAQ_HREF_PREFIX}/${slug}`,
       tags: data.tags,
       type: collection,
       slug,
@@ -30,7 +32,7 @@ const cards: CardProps[] = [
     return {
       title: adoc.frontmatter.asciidoc.doctitle,
       description: adoc.frontmatter.asciidoc.description,
-      btnHref: `/content/${COLLECTION.FAQS}/${adoc.frontmatter.asciidoc.docname}`,
+      btnHref: `${FAQ_HREF_PREFIX}/${adoc.frontmatter.asciidoc.docname}`,
       tags: JSON.parse(adoc.frontmatter.asciidoc.tags ?? '[]'),
       type: COLLECTION.FAQS,
       slug: adoc.title,
