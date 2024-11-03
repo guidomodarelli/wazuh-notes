@@ -7,7 +7,7 @@ import { COLLECTION } from "../../../content/constants";
 
 export async function getStaticPaths() {
   const adocFaqFileNames = await getAdocPaths(COLLECTION.FAQS);
-  const faqs = await getCollection('faqs');
+  const faqs = await getCollection(COLLECTION.FAQS);
 
   return [
     ...adocFaqFileNames.map((adocFaqFileName) => ({ params: { faq: adocFaqFileName } })),
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 }
 
 const { faq } = Astro.params;
-const entry = await getEntry('faqs', faq);
+const entry = await getEntry(COLLECTION.FAQS, faq);
 
 let title: string, description: string, tags: string[];
 let Content: any;
@@ -25,7 +25,7 @@ if (entry) {
   ({ title, tags, description } = entry.data);
   ({ Content } = await entry.render());
 } else {
-  const adoc = await import(`../../../content/faqs/${faq}.adoc`);
+  const adoc = await import(`../../../content/${COLLECTION.FAQS}/${faq}.adoc`);
   title = adoc.frontmatter.asciidoc.doctitle;
   description = adoc.frontmatter.asciidoc.description;
   tags = JSON.parse(adoc.frontmatter.asciidoc.tags ?? '[]');
