@@ -3,9 +3,10 @@ import { getCollection, getEntry } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import Tag from '../../../components/Tag.astro';
 import { getAdocPaths } from '../../../content/get-adoc-paths';
+import { COLLECTION } from "../../../content/constants";
 
 export async function getStaticPaths() {
-  const adocFaqFileNames = await getAdocPaths();
+  const adocFaqFileNames = await getAdocPaths(COLLECTION.FAQS);
   const faqs = await getCollection('faqs');
 
   return [

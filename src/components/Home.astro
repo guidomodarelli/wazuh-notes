@@ -4,8 +4,9 @@ import Cards from './Cards.astro';
 import SearchWithDropdown, { type DropdownButton } from './SearchWithDropdown.astro';
 import { type Props as CardProps } from './Card.astro';
 import { getAdocPaths } from '../content/get-adoc-paths';
+import { COLLECTION } from "../content/constants";
 
-const adocFaqFileNames = await getAdocPaths();
+const adocFaqFileNames = await getAdocPaths(COLLECTION.FAQS);
 // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
 const adocFaqs = await Promise.all(
   adocFaqFileNames.map((absoluteFaqPath) => import(`../content/faqs/${absoluteFaqPath}.adoc`)),
