@@ -9,7 +9,8 @@ body {
     @apply bg-gray-900;
   }
 
-  #root, .article {
+  #root,
+  .article {
     @apply max-w-screen-2xl w-full;
   }
 }
@@ -163,5 +164,38 @@ blockquote {
 
   &:is(.dark *) {
     @apply border-gray-700 text-gray-300;
+  }
+}
+
+table {
+  @apply w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400;
+
+  > thead {
+    @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
+
+    > tr :is(th) {
+      @apply px-6 py-3;
+    }
+  }
+
+  > tbody {
+    tr:not(:last-child) {
+      @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700;
+    }
+
+    tr:last-child {
+      @apply bg-white dark:bg-gray-800;
+    }
+
+    > tr {
+      th {
+        @apply font-medium text-gray-900 whitespace-nowrap dark:text-white;
+      }
+
+      td,
+      th {
+        @apply px-6 py-4;
+      }
+    }
   }
 }
