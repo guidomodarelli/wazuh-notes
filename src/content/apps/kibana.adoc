@@ -1,0 +1,127 @@
+:appname: Kibana
+:date: 2024/11/03
+:author: Desvelao
+:description: Window into the Elastic Stack. Specifically, it's a browser-based analytics and search dashboard for Elasticsearch.
+:doclink: https://www.elastic.co/guide/en/kibana/7.16/index.html
+
+== Info
+
+|===
+| Description | Value
+
+| Installation folder
+| `/usr/share/kibana`
+
+| Configuration file (package)
+| `/etc/kibana/kibana.yml`
+
+| Configuration file (zip)
+| `<KIBANA_HOME>/config/kibana.yml`
+
+| Keystore (package)
+| `/etc/kibana/kibana.keystore`
+
+| Keystore (zip)
+| `<KIBANA_HOME>/config/kibana.keystore`
+
+| Logs
+| `journalctl -u kibana`
+
+| Port
+| `5601`
+
+| Service
+| `kibana`
+|===
+
+== Backup
+
+=== Backup folders/files
+
+|===
+| Key | File
+
+| Package - Configuration
+| `/etc/kibana`
+
+| Package - Certificates - Wazuh installation guide
+| `/etc/kibana/certs`
+
+| Docker - Configuration
+| `/usr/share/kibana/config`
+
+| Certificates
+| All certificates files
+|===
+
+== Commands
+
+> Service start - systemctl
+>
+> `systemctl start kibana`
+
+> Service start - service
+>
+> `service kibana start`
+
+> Service stop - systemctl
+>
+> `systemctl stop kibana`
+
+> Service stop - service
+>
+> `service kibana stop`
+
+> Get version
+>
+> `<KIBANA_PATH>/bin/kibana --version`
+
+> Plugins - Install by URL
+>
+> `<KIBANA_PATH>/bin/kibana-plugin install <url>`
+
+> Plugins - Install local file
+>
+> `<KIBANA_PATH>/bin/kibana-plugin install file://<absolute_path_to_local_file>`
+
+> Plugins - Remove
+>
+> `<KIBANA_PATH>/bin/kibana-plugin remove <plugin_name>`
+
+> Plugins - List
+>
+> `<KIBANA_PATH>/bin/kibana-plugin list`
+
+> Keystore - List
+>
+> `<KIBANA_PATH>/bin/kibana-keystore list`
+
+> Keystore - Add
+>
+> `<KIBANA_PATH>/bin/kibana-keystore add <setting>`
+
+> Keystore - Remove
+>
+> `<KIBANA_PATH>/bin/kibana-keystore remove <setting>`
+
+> Remove bundles (Kibana old)
+>
+> `rm -rf /usr/share/kibana/optimize/bundles`
+
+== Debug
+
+> Service status - systemctl
+>
+> `systemctl status kibana`
+
+> Service status - service
+>
+> `service kibana status`
+
+> Logs (journalctl) - get all logs
+>
+> `journalctl -u kibana`
+
+> Logs (journalctl) - get logs filtering by errors or warnings
+>
+> `journalctl -u kibana | grep -iE "err|warn"`
