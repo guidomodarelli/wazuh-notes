@@ -4,8 +4,9 @@
 :description: Window into the Elastic Stack. Specifically, it's a browser-based analytics and search dashboard for Elasticsearch.
 :doclink: https://www.elastic.co/guide/en/kibana/7.16/index.html
 
-== Info
-
+.Info
+[%collapsible%open]
+====
 |===
 | Description | Value
 
@@ -33,9 +34,11 @@
 | Service
 | `kibana`
 |===
+====
 
-== Backup
-
+.Backup
+[%collapsible]
+====
 Backup folders/files
 
 |===
@@ -53,8 +56,11 @@ Backup folders/files
 | Certificates
 | All certificates files
 |===
+====
 
-== Commands
+.Commands
+[%collapsible]
+====
 
 > Service start - systemctl
 >
@@ -107,8 +113,11 @@ Backup folders/files
 > Remove bundles (Kibana old)
 >
 > `rm -rf /usr/share/kibana/optimize/bundles`
+====
 
-== Debug
+.Debug
+[%collapsible]
+====
 
 > Service status - systemctl
 >
@@ -125,3 +134,4 @@ Backup folders/files
 > Logs (journalctl) - get logs filtering by errors or warnings
 >
 > `journalctl -u kibana | grep -iE "err|warn"`
+====
