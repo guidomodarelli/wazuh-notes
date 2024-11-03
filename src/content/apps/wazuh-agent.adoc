@@ -1,0 +1,109 @@
+:appname: Wazuh agent
+:date: 2024/11/03
+:author: Desvelao
+:description: Wazuh agent is a lightweight agent that runs on your servers and monitors your network traffic and security events.
+:doclink: https://documentation.wazuh.com/current/user-manual/agents/wazuh-agent/index.html
+
+.Info
+[%collapsible%open]
+====
+|===
+| Description | Value
+
+| Installation folder
+| `/var/ossec`
+
+| Configuration file
+| `/var/ossec/etc/ossec.conf`
+
+| Local internal options file
+| `/var/ossec/etc/local_internal_options.conf`
+
+| Logs
+| `/var/ossec/logs/ossec.log`
+
+| Service
+| `wazuh-agent`
+|===
+====
+
+.Backup
+[%collapsible]
+====
+Backup folders/files
+
+|===
+| Key | File
+
+| Configuration
+| `/var/ossec/etc/ossec.conf`
+
+| Internal options
+| `/var/ossec/etc/local_internal_options.conf`
+
+| Manager - Client keys
+| `/var/ossec/etc/client.keys`
+|===
+====
+
+.Commands
+[%collapsible]
+====
+
+> Service start - systemctl
+>
+> `systemctl start wazuh-agent`
+
+> Service start - service
+>
+> `service wazuh-agent start`
+
+> Service stop - systemctl
+>
+> `systemctl stop wazuh-agent`
+
+> Service stop - service
+>
+> `service wazuh-agent stop`
+
+> Get version
+>
+> `cat /var/ossec/etc/ossec-init.conf | grep VERSION`
+
+> Get version - use wazuh-control info
+>
+> `/var/ossec/info/wazuh-control info | grep VERSION`
+
+> Get info
+>
+> `/var/ossec/info/wazuh-control info`
+====
+
+.Debug
+[%collapsible]
+====
+
+> Service status - systemctl
+>
+> `systemctl status wazuh-agent`
+
+> Service status - service
+>
+> `service wazuh-agent start`
+
+> Logs - get all logs
+>
+> `Get-content /var/ossec/logs/ossec.log`
+
+> Logs - filter errors and warnings- NOT TESTED
+>
+> `Select-String -Path C:\\Program Files (x86)\\ossec-agent\\logs\\ossec.log -Pattern "err", "|warn"`
+
+> Logs - filter by agent registration
+>
+> `grep wazuh-agentd /var/ossec/logs/ossec.log`
+
+> Logs - filter by agent registration
+>
+> `Select-String -Path C:\\Program Files (x86)\\ossec-agent\\logs\\ossec.log -Pattern "wazuh-agentd"`
+====
