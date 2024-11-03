@@ -1,0 +1,105 @@
+:appname: Filebeat
+:date: 2024/11/03
+:author: Desvelao
+:description: Lightweight shipper for forwarding and centralizing log data. Installed as an agent on your servers, Filebeat monitors the log files or locations that you specify, collects log events, and forwards them either to Elasticsearch or Logstash for indexing.
+:doclink: https://www.elastic.co/guide/en/beats/filebeat/7.10/filebeat-overview.html
+
+.Info
+[%collapsible%open]
+====
+|===
+| Description | Value
+
+| Installation folder
+| `/usr/share/filebeat`
+
+| Configuration file
+| `/etc/filebeat/filebeat.yml`
+
+| Logs
+| `/var/log/filebeat/filebeat`
+
+| Service
+| `filebeat`
+|===
+====
+
+.Backup
+[%collapsible]
+====
+Backup folders/files
+
+|===
+| Key | File
+
+| Package - Configuration
+| `/etc/filebeat`
+
+| Package - Certificates - Wazuh installation guide
+| `/etc/filebeat/certs`
+
+| Docker - Configuration
+| `/usr/share/filebeat/config`
+
+| Certificates
+| All certificates files
+|===
+====
+
+.Commands
+[%collapsible]
+====
+
+> Service start - systemctl
+>
+> `systemctl start filebeat`
+
+> Service start - service
+>
+> `service filebeat start`
+
+> Service stop - systemctl
+>
+> `systemctl stop filebeat`
+
+> Service stop - service
+>
+> `service filebeat stop`
+
+> Get version
+>
+> `filebeat version`
+
+> Update pipelines
+>
+> `filebeat setup --pipelines`
+
+> Update template
+>
+> `filebeat setup --index-management`
+
+> Connection Filebeat to output
+>
+> `filebeat test output`
+
+> Logs - Get errors or warning
+>
+> `grep -iE "err|warn" /var/log/filebeat/filebeat`
+====
+
+.Debug
+[%collapsible]
+====
+
+> Service status - systemctl
+>
+> `systemctl status filebeat`
+
+> Service status - service
+>
+> `service filebeat status`
+
+> Logs - Get errors or warning
+>
+> `grep -iE "err|warn" /var/log/filebeat/filebeat`
+====
