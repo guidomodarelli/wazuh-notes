@@ -8,19 +8,19 @@ import { COLLECTION } from '../content/constants';
 import { getAdocFileFromCollection } from '../content/get-adoc-file-from-collection';
 import { schemaFaq, schemaApp } from '../content/schema';
 
-async function getAdocFiles(collection: COLLECTION) {
-  const adocFileNames = await extractAdocFilenamesFromCollection(collection);
+async function fetchAdocFilesFromCollection(collection: COLLECTION) {
+  const adocFilenames = await extractAdocFilenamesFromCollection(collection);
   const result = [];
-  for (const adocAppFileName of adocFileNames) {
-    const adoc = await getAdocFileFromCollection(collection, adocAppFileName);
+  for (const adocFilename of adocFilenames) {
+    const adoc = await getAdocFileFromCollection(collection, adocFilename);
     result.push(adoc);
   }
   return result;
 }
 
 // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
-const adocFaqs = await getAdocFiles(COLLECTION.FAQS);
-const adocApps = await getAdocFiles(COLLECTION.APPS);
+const adocFaqs = await fetchAdocFilesFromCollection(COLLECTION.FAQS);
+const adocApps = await fetchAdocFilesFromCollection(COLLECTION.APPS);
 
 const faqs = await getCollection(COLLECTION.FAQS);
 
@@ -56,22 +56,22 @@ const cards: CardProps[] = [
       slug: adoc.frontmatter.asciidoc.docname,
     };
   }),
-  // ...adocApps.map((adoc) => {
-  //   schemaApp.parse({
-  //     date: adoc.frontmatter.asciidoc.date,
-  //     appname: adoc.frontmatter.asciidoc.appname,
-  //     description: adoc.frontmatter.asciidoc.description,
-  //     author: adoc.frontmatter.asciidoc.author,
-  //     doclink: adoc.frontmatter.asciidoc.doclink,
-  //   });
-  //   return {
-  //     title: adoc.frontmatter.asciidoc.appname,
-  //     description: adoc.frontmatter.asciidoc.description,
-  //     btnHref: `${APPS_HREF_PREFIX}/${adoc.frontmatter.asciidoc.docname}`,
-  //     type: COLLECTION.APPS,
-  //     slug: adoc.frontmatter.asciidoc.docname,
-  //   };
-  // }),
+  ...adocApps.map((adoc) => {
+    schemaApp.parse({
+      date: adoc.frontmatter.asciidoc.date,
+      appname: adoc.frontmatter.asciidoc.appname,
+      description: adoc.frontmatter.asciidoc.description,
+      author: adoc.frontmatter.asciidoc.author,
+      doclink: adoc.frontmatter.asciidoc.doclink,
+    });
+    return {
+      title: adoc.frontmatter.asciidoc.appname,
+      description: adoc.frontmatter.asciidoc.description,
+      btnHref: `${APPS_HREF_PREFIX}/${adoc.frontmatter.asciidoc.docname}`,
+      type: COLLECTION.APPS,
+      slug: adoc.frontmatter.asciidoc.docname,
+    };
+  }),
 ];
 
 const dropdownButtons: DropdownButton[] = [
