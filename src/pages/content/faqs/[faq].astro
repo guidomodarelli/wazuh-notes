@@ -2,12 +2,12 @@
 import { getCollection, getEntry } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import Tag from '../../../components/Tag.astro';
-import { getAdocPaths } from '../../../content/get-adoc-paths';
+import { extractAdocFilenamesFromDirectory } from '../../../content/get-adoc-paths';
 import { COLLECTION } from "../../../content/constants";
 import { importAdocFiles } from "../../../content/import-entry";
 
 export async function getStaticPaths() {
-  const adocFaqFileNames = await getAdocPaths(COLLECTION.FAQS);
+  const adocFaqFileNames = await extractAdocFilenamesFromDirectory(COLLECTION.FAQS);
   const faqs = await getCollection(COLLECTION.FAQS);
 
   return [

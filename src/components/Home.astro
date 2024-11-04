@@ -3,13 +3,13 @@ import { getCollection } from 'astro:content';
 import Cards from './Cards.astro';
 import SearchWithDropdown, { type DropdownButton } from './SearchWithDropdown.astro';
 import { type Props as CardProps } from './Card.astro';
-import { getAdocPaths } from '../content/get-adoc-paths';
+import { extractAdocFilenamesFromDirectory } from '../content/get-adoc-paths';
 import { COLLECTION } from '../content/constants';
 import { importAdocFiles } from '../content/import-entry';
 import { schemaFaq, schemaApp } from '../content/schema';
 
 async function getAdocFiles(collection: COLLECTION) {
-  const adocFileNames = await getAdocPaths(collection);
+  const adocFileNames = await extractAdocFilenamesFromDirectory(collection);
   const result = [];
   for (const adocAppFileName of adocFileNames) {
     const adoc = await importAdocFiles(collection, adocAppFileName);
