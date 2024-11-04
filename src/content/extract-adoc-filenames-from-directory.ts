@@ -1,8 +1,9 @@
 import { glob } from 'glob';
 import path from 'path';
+import type { COLLECTION } from "./constants";
 
-export async function extractAdocFilenamesFromDirectory(dirpath: string) {
-  const adocFilePathsInDirectory = await glob(`src/content/${dirpath}/*.adoc`);
+export async function extractAdocFilenamesFromCollection(collection: COLLECTION) {
+  const adocFilePaths = await glob(`src/content/${collection}/*.adoc`);
 
-  return adocFilePathsInDirectory.map((adocFilePath) => path.basename(adocFilePath, '.adoc'));
+  return adocFilePaths.map((adocFilePath) => path.basename(adocFilePath, '.adoc'));
 }
