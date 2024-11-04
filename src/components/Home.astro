@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Cards from './Cards.astro';
 import SearchWithDropdown, { type DropdownButton } from './SearchWithDropdown.astro';
 import { type Props as CardProps } from './Card.astro';
-import { extractAdocFilenamesFromCollection } from '../content/extract-adoc-filenames-from-directory';
+import { extractAdocFilenamesFromCollection } from '../content/extract-adoc-filenames-from-collection';
 import { COLLECTION } from '../content/constants';
 import { getAdocFileFromCollection } from '../content/get-adoc-file-from-collection';
 import { schemaFaq, schemaApp } from '../content/schema';
