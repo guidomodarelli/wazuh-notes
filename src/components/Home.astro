@@ -5,14 +5,14 @@ import SearchWithDropdown, { type DropdownButton } from './SearchWithDropdown.as
 import { type Props as CardProps } from './Card.astro';
 import { extractAdocFilenamesFromDirectory } from '../content/extract-adoc-filenames-from-directory';
 import { COLLECTION } from '../content/constants';
-import { importAdocFiles } from '../content/import-entry';
+import { getAdocFileFromCollection } from '../content/get-adoc-file-from-collection';
 import { schemaFaq, schemaApp } from '../content/schema';
 
 async function getAdocFiles(collection: COLLECTION) {
   const adocFileNames = await extractAdocFilenamesFromDirectory(collection);
   const result = [];
   for (const adocAppFileName of adocFileNames) {
-    const adoc = await importAdocFiles(collection, adocAppFileName);
+    const adoc = await getAdocFileFromCollection(collection, adocAppFileName);
     result.push(adoc);
   }
   return result;
