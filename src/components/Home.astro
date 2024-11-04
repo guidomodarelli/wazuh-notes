@@ -4,19 +4,23 @@ import Cards from './Cards.astro';
 import SearchWithDropdown, { type DropdownButton } from './SearchWithDropdown.astro';
 import { type Props as CardProps } from './Card.astro';
 import { getAdocPaths } from '../content/get-adoc-paths';
-import { COLLECTION } from "../content/constants";
-import { importAppsAdoc, importFaqAdoc } from '../content/import-entry';
+import { COLLECTION } from '../content/constants';
+import { importAdocFiles } from '../content/import-entry';
 import { schemaFaq, schemaApp } from '../content/schema';
 
-const adocFaqFileNames = await getAdocPaths(COLLECTION.FAQS);
-const adocAppsFileNames = await getAdocPaths(COLLECTION.APPS);
+async function getAdocFiles(collection: COLLECTION) {
+  const adocFileNames = await getAdocPaths(collection);
+  const result = [];
+  for (const adocAppFileName of adocFileNames) {
+    const adoc = await importAdocFiles(collection, adocAppFileName);
+    result.push(adoc);
+  }
+  return result;
+}
+
 // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
-const adocFaqs = await Promise.all(
-  adocFaqFileNames.map((absoluteFaqPath) => importFaqAdoc(absoluteFaqPath)),
-);
-const adocApps = await Promise.all(
-  adocAppsFileNames.map((absoluteAppPath) => importAppsAdoc(absoluteAppPath)),
-);
+const adocFaqs = await getAdocFiles(COLLECTION.FAQS);
+const adocApps = await getAdocFiles(COLLECTION.APPS);
 
 const faqs = await getCollection(COLLECTION.FAQS);
 
@@ -52,22 +56,22 @@ const cards: CardProps[] = [
       slug: adoc.frontmatter.asciidoc.docname,
     };
   }),
-  ...adocApps.map((adoc) => {
-    schemaApp.parse({
-      date: adoc.frontmatter.asciidoc.date,
-      appname: adoc.frontmatter.asciidoc.appname,
-      description: adoc.frontmatter.asciidoc.description,
-      author: adoc.frontmatter.asciidoc.author,
-      doclink: adoc.frontmatter.asciidoc.doclink,
-    });
-    return {
-      title: adoc.frontmatter.asciidoc.appname,
-      description: adoc.frontmatter.asciidoc.description,
-      btnHref: `${APPS_HREF_PREFIX}/${adoc.frontmatter.asciidoc.docname}`,
-      type: COLLECTION.APPS,
-      slug: adoc.frontmatter.asciidoc.docname,
-    };
-  }),
+  // ...adocApps.map((adoc) => {
+  //   schemaApp.parse({
+  //     date: adoc.frontmatter.asciidoc.date,
+  //     appname: adoc.frontmatter.asciidoc.appname,
+  //     description: adoc.frontmatter.asciidoc.description,
+  //     author: adoc.frontmatter.asciidoc.author,
+  //     doclink: adoc.frontmatter.asciidoc.doclink,
+  //   });
+  //   return {
+  //     title: adoc.frontmatter.asciidoc.appname,
+  //     description: adoc.frontmatter.asciidoc.description,
+  //     btnHref: `${APPS_HREF_PREFIX}/${adoc.frontmatter.asciidoc.docname}`,
+  //     type: COLLECTION.APPS,
+  //     slug: adoc.frontmatter.asciidoc.docname,
+  //   };
+  // }),
 ];
 
 const dropdownButtons: DropdownButton[] = [

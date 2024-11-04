@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 import Tag from '../../../components/Tag.astro';
 import { getAdocPaths } from '../../../content/get-adoc-paths';
 import { COLLECTION } from "../../../content/constants";
-import { importFaqAdoc } from "../../../content/import-entry";
+import { importAdocFiles } from "../../../content/import-entry";
 
 export async function getStaticPaths() {
   const adocFaqFileNames = await getAdocPaths(COLLECTION.FAQS);
@@ -26,7 +26,7 @@ if (entry) {
   ({ title, tags, description } = entry.data);
   ({ Content } = await entry.render());
 } else {
-  const adoc = await importFaqAdoc(faq);
+  const adoc = await importAdocFiles(COLLECTION.FAQS, faq);
   title = adoc.frontmatter.asciidoc.doctitle;
   description = adoc.frontmatter.asciidoc.description;
   tags = JSON.parse(adoc.frontmatter.asciidoc.tags ?? '[]');

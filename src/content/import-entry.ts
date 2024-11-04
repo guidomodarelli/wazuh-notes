@@ -1,9 +1,5 @@
 import { COLLECTION } from "./constants";
 
-export function importFaqAdoc(faq: string) {
-  return import(`../content/${COLLECTION.FAQS}/${faq}.adoc`);
-}
-
-export function importAppsAdoc(app: string) {
-  return import(`../content/${COLLECTION.APPS}/${app}.adoc`);
+export function importAdocFiles(collection: COLLECTION, faq: string) {
+  return import(`../content/${collection}/${faq}.adoc`);
 }
