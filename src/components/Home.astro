@@ -40,36 +40,36 @@ const cards: CardProps[] = [
   }),
   ...adocFaqs.map((adoc) => {
     schemaFaq.parse({
-      date: adoc.frontmatter.asciidoc.date,
-      title: adoc.frontmatter.asciidoc.doctitle,
-      description: adoc.frontmatter.asciidoc.description,
-      author: adoc.frontmatter.asciidoc.author,
-      tags: JSON.parse(adoc.frontmatter.asciidoc.tags ?? '[]'),
-      version: adoc.frontmatter.asciidoc.version,
+      date: adoc.getAttribute('date'),
+      title: adoc.getAttribute('doctitle'),
+      description: adoc.getAttribute('description'),
+      author: adoc.getAttribute('author'),
+      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
+      version: adoc.getAttribute('version'),
     });
     return {
-      title: adoc.frontmatter.asciidoc.doctitle,
-      description: adoc.frontmatter.asciidoc.description,
-      btnHref: `${FAQ_HREF_PREFIX}/${adoc.frontmatter.asciidoc.docname}`,
-      tags: JSON.parse(adoc.frontmatter.asciidoc.tags ?? '[]'),
+      title: adoc.getAttribute('doctitle'),
+      description: adoc.getAttribute('description'),
+      btnHref: `${FAQ_HREF_PREFIX}/${adoc.getAttribute('docname')}`,
+      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
       type: COLLECTION.FAQS,
-      slug: adoc.frontmatter.asciidoc.docname,
+      slug: adoc.getAttribute('docname'),
     };
   }),
   ...adocApps.map((adoc) => {
     schemaApp.parse({
-      date: adoc.frontmatter.asciidoc.date,
-      appname: adoc.frontmatter.asciidoc.appname,
-      description: adoc.frontmatter.asciidoc.description,
-      author: adoc.frontmatter.asciidoc.author,
-      doclink: adoc.frontmatter.asciidoc.doclink,
+      date: adoc.getAttribute('date'),
+      appname: adoc.getAttribute('appname'),
+      description: adoc.getAttribute('description'),
+      author: adoc.getAttribute('author'),
+      doclink: adoc.getAttribute('doclink'),
     });
     return {
-      title: adoc.frontmatter.asciidoc.appname,
-      description: adoc.frontmatter.asciidoc.description,
-      btnHref: `${APPS_HREF_PREFIX}/${adoc.frontmatter.asciidoc.docname}`,
+      title: adoc.getAttribute('appname'),
+      description: adoc.getAttribute('description'),
+      btnHref: `${APPS_HREF_PREFIX}/${adoc.getAttribute('docname')}`,
       type: COLLECTION.APPS,
-      slug: adoc.frontmatter.asciidoc.docname,
+      slug: adoc.getAttribute('docname'),
     };
   }),
 ];

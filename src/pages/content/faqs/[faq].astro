@@ -5,6 +5,7 @@ import Tag from '../../../components/Tag.astro';
 import { extractAdocFilenamesFromCollection } from '../../../content/extract-adoc-filenames-from-collection';
 import { COLLECTION } from "../../../content/constants";
 import { getAdocFileFromCollection } from "../../../content/get-adoc-file-from-collection";
+import type { Document } from "asciidoctor";
 
 export async function getStaticPaths() {
   const adocFaqFileNames = await extractAdocFilenamesFromCollection(COLLECTION.FAQS);
@@ -21,16 +22,16 @@ const entry = await getEntry(COLLECTION.FAQS, faq);
 
 let title: string, description: string, tags: string[];
 let Content: any;
+let adoc: Document | undefined;
 
 if (entry) {
   ({ title, tags, description } = entry.data);
   ({ Content } = await entry.render());
 } else {
-  const adoc = await getAdocFileFromCollection(COLLECTION.FAQS, faq);
-  title = adoc.frontmatter.asciidoc.doctitle;
-  description = adoc.frontmatter.asciidoc.description;
-  tags = JSON.parse(adoc.frontmatter.asciidoc.tags ?? '[]');
-  Content = adoc.Content;
+  adoc = await getAdocFileFromCollection(COLLECTION.FAQS, faq);
+  title = adoc.getAttribute('doctitle');
+  description = adoc.getAttribute('description');
+  tags = JSON.parse(adoc.getAttribute('tags') ?? '[]');
 }
 ---
 
@@ -41,7 +42,7 @@ if (entry) {
       {tags.map((tag) => <Tag tag={tag} color="dark" />)}
     </div>
     <p>{description}</p>
-    <Content />
+    {adoc === undefined ? <Content /> : <Fragment set:html={adoc.convert()} />}
   </div>
 </Layout>
 

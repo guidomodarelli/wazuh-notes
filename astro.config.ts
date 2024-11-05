@@ -1,14 +1,8 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import asciidoc from 'astro-asciidoc';
-import path from 'node:path';
-import { cwd } from 'node:process';
-import type { default as shikiHighlighter } from './shiki-highlighter.js';
-import { fileURLToPath } from 'node:url';
-
-type ShikiOptions = Parameters<typeof shikiHighlighter>[0];
-const DEFAULT_THEME = 'github-dark';
+import { DEFAULT_THEME } from './constants';
+import { ASCIIDOC_OPTIONS } from './asciidoc.config';
 
 // https://astro.build/config
 export default defineConfig({
@@ -30,24 +24,6 @@ export default defineConfig({
   },
   integrations: [
     tailwind(),
-    asciidoc({
-      options: {
-        standalone: false,
-        attributes: {
-          stylesdir: path.join(cwd(), 'src/styles'),
-          stylesheet: 'tailwind.css',
-          'source-highlighter': 'shiki',
-        },
-      },
-      highlighters: {
-        shiki: {
-          path: fileURLToPath(new URL('shiki-highlighter.js', import.meta.url)),
-          options: {
-            themes: [DEFAULT_THEME],
-            langs: ['javascript', 'typescript', 'json', 'bash', 'sh', 'shell'],
-          } satisfies ShikiOptions,
-        },
-      },
-    }),
+    asciidoc(ASCIIDOC_OPTIONS),
   ],
 });

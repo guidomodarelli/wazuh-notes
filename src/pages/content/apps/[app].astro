@@ -1,9 +1,10 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
-import { COLLECTION } from "../../../content/constants";
+import { COLLECTION } from '../../../content/constants';
 import { extractAdocFilenamesFromCollection } from '../../../content/extract-adoc-filenames-from-collection';
 import Layout from '../../../layouts/Layout.astro';
-import { getAdocFileFromCollection } from "../../../content/get-adoc-file-from-collection";
+import { getAdocFileFromCollection } from '../../../content/get-adoc-file-from-collection';
+import type { Document } from 'asciidoctor';
 
 export async function getStaticPaths() {
   const adocAppFileNames = await extractAdocFilenamesFromCollection(COLLECTION.APPS);
@@ -20,16 +21,16 @@ const entry = await getEntry(COLLECTION.APPS, app);
 
 let appname: string, description: string, doclink: string;
 let Content: any;
+let adoc: Document | undefined;
 
 if (entry) {
   ({ appname, description, doclink } = entry.data);
   ({ Content } = await entry.render());
 } else {
-  const adoc = await getAdocFileFromCollection(COLLECTION.APPS, app);
-  appname = adoc.frontmatter.asciidoc.appname;
-  description = adoc.frontmatter.asciidoc.description;
-  doclink = adoc.frontmatter.asciidoc.doclink;
-  Content = adoc.Content;
+  adoc = await getAdocFileFromCollection(COLLECTION.APPS, app);
+  appname = adoc.getAttribute('appname');
+  description = adoc.getAttribute('description');
+  doclink = adoc.getAttribute('doclink');
 }
 ---
 
@@ -38,7 +39,7 @@ if (entry) {
     <h1>{appname}</h1>
     <p>{description}</p>
     <a href={doclink} rel="noopener noreferrer" target="_blank">{doclink}</a>
-    <Content />
+    {adoc === undefined ? <Content /> : <Fragment set:html={adoc.convert()} />}
   </div>
 </Layout>
 
