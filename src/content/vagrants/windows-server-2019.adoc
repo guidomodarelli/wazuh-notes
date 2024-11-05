@@ -1,0 +1,24 @@
+:date: 2024/11/05
+:title: Windows Server 2019
+:author: Guido Modarelli
+:description: Windows Server 2019 is a server operating system developed by Microsoft.
+:link: https://app.vagrantup.com/StefanScherer/boxes/windows_2019
+:tags: ["windows", "server", "2019"]
+:version: 1.0.0
+
+[source,ruby]
+----
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "StefanScherer/windows_2019"
+  config.vm.network :private_network, ip: "192.168.56.12"
+  config.vm.provider "virtualbox" do |pmv|
+    pmv.name = "winserver2019"
+    pmv.memory = 4092
+    pmv.cpus = 2
+  end
+  config.vm.hostname = "winserver"
+end
+----
