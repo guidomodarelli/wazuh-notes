@@ -29,7 +29,7 @@ if (entry) {
   ({ Content } = await entry.render());
 } else {
   adoc = getAdocFileFromCollection(COLLECTION.APPS, app);
-  title = adoc.getAttribute('appname');
+  title = adoc.getAttribute('doctitle');
   tags = JSON.parse(adoc.getAttribute('tags') ?? '[]');
   description = adoc.getAttribute('description');
   doclink = adoc.getAttribute('doclink');
