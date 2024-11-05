@@ -6,7 +6,7 @@ import { type Props as CardProps } from './Card.astro';
 import { extractAdocFilenamesFromCollection } from '../content/extract-adoc-filenames-from-collection';
 import { COLLECTION } from '../content/constants';
 import { getAdocFileFromCollection } from '../content/get-adoc-file-from-collection';
-import { schemaFaq, schemaApp } from '../content/schema';
+import { schemaFaq, schemaApp, schemaVagrant } from '../content/schema';
 
 async function fetchAdocFilesFromCollection(collection: COLLECTION) {
   const adocFilenames = await extractAdocFilenamesFromCollection(collection);
@@ -21,11 +21,13 @@ async function fetchAdocFilesFromCollection(collection: COLLECTION) {
 // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
 const adocFaqs = await fetchAdocFilesFromCollection(COLLECTION.FAQS);
 const adocApps = await fetchAdocFilesFromCollection(COLLECTION.APPS);
+const vagrantApps = await fetchAdocFilesFromCollection(COLLECTION.VAGRANTS);
 
 const faqs = await getCollection(COLLECTION.FAQS);
 
 const FAQ_HREF_PREFIX = `/content/${COLLECTION.FAQS}`;
 const APPS_HREF_PREFIX = `/content/${COLLECTION.APPS}`;
+const VAGRANT_HREF_PREFIX = `/content/${COLLECTION.VAGRANTS}`;
 
 const cards: CardProps[] = [
   ...faqs.map(({ data, slug, collection }) => {
@@ -69,6 +71,23 @@ const cards: CardProps[] = [
       description: adoc.getAttribute('description'),
       btnHref: `${APPS_HREF_PREFIX}/${adoc.getAttribute('docname')}`,
       type: COLLECTION.APPS,
+      slug: adoc.getAttribute('docname'),
+    };
+  }),
+  ...vagrantApps.map((adoc) => {
+    schemaVagrant.parse({
+      date: adoc.getAttribute('date'),
+      title: adoc.getAttribute('doctitle'),
+      description: adoc.getAttribute('description'),
+      author: adoc.getAttribute('author'),
+      link: adoc.getAttribute('link'),
+      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
+    });
+    return {
+      title: adoc.getAttribute('doctitle'),
+      description: adoc.getAttribute('description'),
+      btnHref: `${VAGRANT_HREF_PREFIX}/${adoc.getAttribute('docname')}`,
+      type: COLLECTION.VAGRANTS,
       slug: adoc.getAttribute('docname'),
     };
   }),
