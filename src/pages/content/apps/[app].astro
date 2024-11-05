@@ -35,16 +35,22 @@ if (entry) {
 ---
 
 <Layout title={appname}>
-  <div class="content markdown">
-    <h1>{appname}</h1>
-    <p>{description}</p>
-    <a href={doclink} rel="noopener noreferrer" target="_blank">{doclink}</a>
-    {adoc === undefined ? <Content /> : <Fragment set:html={adoc.convert()} />}
+  <div class="render-content">
+    <div class="header">
+      <h1>{appname}</h1>
+      <p>{description}</p>
+      <a href={doclink} rel="noopener noreferrer" target="_blank">{doclink}</a>
+    </div>
+    <div class="content">{adoc === undefined ? <Content /> : <Fragment set:html={adoc.convert()} />}</div>
   </div>
 </Layout>
 
 <style lang="scss">
   .tags {
     @apply flex flex-wrap gap-2 mb-6;
+  }
+
+  .header {
+    @apply mb-6;
   }
 </style>

@@ -55,7 +55,7 @@ p {
 }
 
 .article pre > code,
-.content.markdown pre:has(> code) {
+.render-content pre:has(> code) {
   @apply rounded-lg p-4 mb-3;
 }
 
@@ -117,7 +117,7 @@ li {
     @apply mt-2;
   }
 }
-.content.markdown {
+.render-content {
   ul,
   ol {
     @apply mb-6;
