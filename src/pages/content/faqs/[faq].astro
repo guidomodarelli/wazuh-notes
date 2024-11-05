@@ -28,7 +28,7 @@ if (entry) {
   ({ title, tags, description } = entry.data);
   ({ Content } = await entry.render());
 } else {
-  adoc = await getAdocFileFromCollection(COLLECTION.FAQS, faq);
+  adoc = getAdocFileFromCollection(COLLECTION.FAQS, faq);
   title = adoc.getAttribute('doctitle');
   description = adoc.getAttribute('description');
   tags = JSON.parse(adoc.getAttribute('tags') ?? '[]');

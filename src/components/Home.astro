@@ -12,7 +12,7 @@ async function fetchAdocFilesFromCollection(collection: COLLECTION) {
   const adocFilenames = await extractAdocFilenamesFromCollection(collection);
   const result = [];
   for (const adocFilename of adocFilenames) {
-    const adoc = await getAdocFileFromCollection(collection, adocFilename);
+    const adoc = getAdocFileFromCollection(collection, adocFilename);
     result.push(adoc);
   }
   return result;

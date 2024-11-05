@@ -27,7 +27,7 @@ if (entry) {
   ({ appname, description, doclink } = entry.data);
   ({ Content } = await entry.render());
 } else {
-  adoc = await getAdocFileFromCollection(COLLECTION.APPS, app);
+  adoc = getAdocFileFromCollection(COLLECTION.APPS, app);
   appname = adoc.getAttribute('appname');
   description = adoc.getAttribute('description');
   doclink = adoc.getAttribute('doclink');
