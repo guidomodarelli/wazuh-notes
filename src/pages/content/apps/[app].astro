@@ -39,7 +39,7 @@ if (entry) {
     <div class="header">
       <h1>{appname}</h1>
       <p>{description}</p>
-      <a href={doclink} rel="noopener noreferrer" target="_blank">{doclink}</a>
+      <a href={doclink} rel="noopener noreferrer" target="_blank">Documentation</a>
     </div>
     <div class="content">{adoc === undefined ? <Content /> : <Fragment set:html={adoc.convert()} />}</div>
   </div>
