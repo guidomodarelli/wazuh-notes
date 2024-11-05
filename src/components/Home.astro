@@ -33,9 +33,9 @@ const cards: CardProps[] = [
   ...faqs.map(({ data, slug, collection }) => {
     return {
       title: data.title,
+      tags: data.tags,
       description: data.description,
       btnHref: `${FAQ_HREF_PREFIX}/${slug}`,
-      tags: data.tags,
       type: collection,
       slug,
     };
@@ -44,16 +44,16 @@ const cards: CardProps[] = [
     schemaFaq.parse({
       date: adoc.getAttribute('date'),
       title: adoc.getAttribute('doctitle'),
+      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
       description: adoc.getAttribute('description'),
       author: adoc.getAttribute('author'),
-      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
       version: adoc.getAttribute('version'),
     });
     return {
       title: adoc.getAttribute('doctitle'),
+      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
       description: adoc.getAttribute('description'),
       btnHref: `${FAQ_HREF_PREFIX}/${adoc.getAttribute('docname')}`,
-      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
       type: COLLECTION.FAQS,
       slug: adoc.getAttribute('docname'),
     };
@@ -62,12 +62,14 @@ const cards: CardProps[] = [
     schemaApp.parse({
       date: adoc.getAttribute('date'),
       title: adoc.getAttribute('doctitle'),
+      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
       description: adoc.getAttribute('description'),
       author: adoc.getAttribute('author'),
       doclink: adoc.getAttribute('doclink'),
     });
     return {
       title: adoc.getAttribute('doctitle'),
+      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
       description: adoc.getAttribute('description'),
       btnHref: `${APPS_HREF_PREFIX}/${adoc.getAttribute('docname')}`,
       type: COLLECTION.APPS,
@@ -78,13 +80,14 @@ const cards: CardProps[] = [
     schemaVagrant.parse({
       date: adoc.getAttribute('date'),
       title: adoc.getAttribute('doctitle'),
+      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
       description: adoc.getAttribute('description'),
       author: adoc.getAttribute('author'),
       link: adoc.getAttribute('link'),
-      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
     });
     return {
       title: adoc.getAttribute('doctitle'),
+      tags: JSON.parse(adoc.getAttribute('tags') ?? '[]'),
       description: adoc.getAttribute('description'),
       btnHref: `${VAGRANT_HREF_PREFIX}/${adoc.getAttribute('docname')}`,
       type: COLLECTION.VAGRANTS,
