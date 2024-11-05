@@ -16,6 +16,7 @@
     "asciidoctor": "^3.0.4",
     "astro": "4.16.7",
     "astro-asciidoc": "^0.0.3",
+    "cheerio": "^1.0.0",
     "clsx": "2.1.1",
     "glob": "^11.0.0",
     "tailwind-merge": "2.5.4",
