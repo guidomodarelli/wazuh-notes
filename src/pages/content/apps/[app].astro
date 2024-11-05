@@ -19,25 +19,25 @@ export async function getStaticPaths() {
 const { app } = Astro.params;
 const entry = await getEntry(COLLECTION.APPS, app);
 
-let appname: string, description: string, doclink: string;
+let title: string, description: string, doclink: string;
 let Content: any;
 let adoc: Document | undefined;
 
 if (entry) {
-  ({ appname, description, doclink } = entry.data);
+  ({ title, description, doclink } = entry.data);
   ({ Content } = await entry.render());
 } else {
   adoc = getAdocFileFromCollection(COLLECTION.APPS, app);
-  appname = adoc.getAttribute('appname');
+  title = adoc.getAttribute('appname');
   description = adoc.getAttribute('description');
   doclink = adoc.getAttribute('doclink');
 }
 ---
 
-<Layout title={appname}>
+<Layout title={title}>
   <div class="render-content">
     <div class="header">
-      <h1>{appname}</h1>
+      <h1>{title}</h1>
       <p>{description}</p>
       <a href={doclink} rel="noopener noreferrer" target="_blank">Documentation</a>
     </div>

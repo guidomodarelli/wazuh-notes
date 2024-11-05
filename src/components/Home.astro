@@ -61,13 +61,13 @@ const cards: CardProps[] = [
   ...adocApps.map((adoc) => {
     schemaApp.parse({
       date: adoc.getAttribute('date'),
-      appname: adoc.getAttribute('appname'),
+      title: adoc.getAttribute('doctitle'),
       description: adoc.getAttribute('description'),
       author: adoc.getAttribute('author'),
       doclink: adoc.getAttribute('doclink'),
     });
     return {
-      title: adoc.getAttribute('appname'),
+      title: adoc.getAttribute('doctitle'),
       description: adoc.getAttribute('description'),
       btnHref: `${APPS_HREF_PREFIX}/${adoc.getAttribute('docname')}`,
       type: COLLECTION.APPS,

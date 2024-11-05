@@ -1,4 +1,4 @@
-:appname: Filebeat
+:title: Filebeat
 :date: 2024/11/03
 :author: Desvelao
 :description: Lightweight shipper for forwarding and centralizing log data. Installed as an agent on your servers, Filebeat monitors the log files or locations that you specify, collects log events, and forwards them either to Elasticsearch or Logstash for indexing.

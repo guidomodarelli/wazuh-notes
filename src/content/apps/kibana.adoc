@@ -1,4 +1,4 @@
-:appname: Kibana
+:title: Kibana
 :date: 2024/11/03
 :author: Desvelao
 :description: Window into the Elastic Stack. Specifically, it's a browser-based analytics and search dashboard for Elasticsearch.

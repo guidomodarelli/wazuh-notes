@@ -25,7 +25,7 @@ let Content: any;
 let adoc: Document | undefined;
 
 if (entry) {
-  ({ title, tags, description, link } = entry.data);
+  ({ title, tags = [], description, link } = entry.data);
   ({ Content } = await entry.render());
 } else {
   adoc = getAdocFileFromCollection(COLLECTION.VAGRANTS, vagrant);

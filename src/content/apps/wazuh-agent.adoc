@@ -1,4 +1,4 @@
-:appname: Wazuh agent
+:title: Wazuh agent
 :date: 2024/11/03
 :author: Desvelao
 :description: Wazuh agent is a lightweight agent that runs on your servers and monitors your network traffic and security events.
