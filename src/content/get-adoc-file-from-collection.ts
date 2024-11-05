@@ -22,18 +22,21 @@ export function getAdocFileFromCollection(collection: COLLECTION, filename: stri
   // @ts-expect-error
   adocDocument.convert = async () => {
     // get all code blocks
-    const codeBlocks = $('pre > code');
+    const codeBlocks = $('pre:has(> code)');
     const blocks = codeBlocks.get();
 
     for (const block of blocks) {
-      const codeBlock = $(block);
+      // get the pre code block element
+      const preCodeBlock = $(block);
+      // get the code block element
+      const codeBlock = preCodeBlock.children('code');
       // get the language of the code block
       const language = codeBlock.attr('data-lang');
       const html = await codeToHtml(codeBlock.text(), {
         lang: language ?? 'text',
         theme: DEFAULT_THEME,
       });
-      codeBlock.replaceWith(html);
+      preCodeBlock.replaceWith(html);
     }
 
     return $.html();
