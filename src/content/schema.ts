@@ -14,7 +14,9 @@ const CONTENT_SCHEMA_FIELDS = {
     message: 'Author is required',
   }),
   TAGS: z
-    .array(z.string(), {
+    .array(z.string().regex(/* kebab-case */ /^[a-z0-9.]+(?:-[a-z0-9.]+)*$/, {
+      message: 'Tags are not in kebab-case',
+    }), {
       message: 'Tags are required',
     })
     .optional(),
