@@ -1,69 +1,51 @@
 import { z } from 'astro/zod';
 
-export const schemaFaq = z.object({
-  date: z.string({
+const CONTENT_SCHEMA_FIELDS = {
+  DATE: z.string({
     message: 'Date is required',
   }),
-  title: z.string({
+  TITLE: z.string({
     message: 'Title is required',
   }),
-  description: z.string({
+  DESCRIPTION: z.string({
     message: 'Description is required',
   }),
-  author: z.string({
+  AUTHOR: z.string({
     message: 'Author is required',
   }),
-  tags: z.array(z.string(), {
-    message: 'Tags are required',
-  }),
-  version: z.string({
-    message: 'Version is required',
-  }),
+  TAGS: z
+    .array(z.string(), {
+      message: 'Tags are required',
+    })
+    .optional(),
+  LINK: (name: string) =>
+    z
+      .string({
+        message: `${name} is required`,
+      })
+      .url({
+        message: `${name} is not a valid URL`,
+      }),
+} as const;
+
+const schemaBase = z.object({
+  date: CONTENT_SCHEMA_FIELDS.DATE,
+  title: CONTENT_SCHEMA_FIELDS.TITLE,
+  description: CONTENT_SCHEMA_FIELDS.DESCRIPTION,
+  author: CONTENT_SCHEMA_FIELDS.AUTHOR,
+  tags: CONTENT_SCHEMA_FIELDS.TAGS,
 });
 
-export const schemaApp = z.object({
-  date: z.string({
-    message: 'Date is required',
-  }),
-  appname: z.string({
-    message: 'Appname is required',
-  }),
-  description: z.string({
-    message: 'Description is required',
-  }),
-  author: z.string({
-    message: 'Author is required',
-  }),
-  doclink: z
-    .string({
-      message: 'Doclink is required',
-    })
-    .url({
-      message: 'Doclink is not a valid URL',
-    }),
-});
+export const schemaFaq = schemaBase;
 
-export const schemaVagrant = z.object({
-  date: z.string({
-    message: 'Date is required',
+export const schemaApp = schemaBase.merge(
+  z.object({
+    doclink: CONTENT_SCHEMA_FIELDS.LINK('Doclink'),
   }),
-  title: z.string({
-    message: 'Title is required',
+);
+
+export const schemaVagrant = schemaBase.merge(
+  z.object({
+    link: CONTENT_SCHEMA_FIELDS.LINK('Link'),
   }),
-  description: z.string({
-    message: 'Description is required',
-  }),
-  author: z.string({
-    message: 'Author is required',
-  }),
-  link: z
-    .string({
-      message: 'Link is required',
-    })
-    .url({
-      message: 'Link is not a valid URL',
-    }),
-  tags: z.array(z.string(), {
-    message: 'Tags are required',
-  }),
-});
+);
