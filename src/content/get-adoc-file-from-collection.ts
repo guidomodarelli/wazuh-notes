@@ -1,6 +1,6 @@
 import Processor, { type Document } from 'asciidoctor';
 import { cwd } from 'node:process';
-import { ASCIIDOC_OPTIONS } from '../../asciidoc.config';
+import { ASCIIDOC_OPTIONS } from '../.config/asciidoc.config';
 import { COLLECTION } from './constants';
 import * as cheerio from 'cheerio';
 import { codeToHtml } from 'shiki';

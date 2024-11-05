@@ -1,8 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import asciidoc from 'astro-asciidoc';
 import { DEFAULT_THEME } from './constants';
-import { ASCIIDOC_OPTIONS } from './asciidoc.config';
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,8 +20,5 @@ export default defineConfig({
       theme: DEFAULT_THEME,
     },
   },
-  integrations: [
-    tailwind(),
-    asciidoc(ASCIIDOC_OPTIONS),
-  ],
+  integrations: [tailwind()],
 });
