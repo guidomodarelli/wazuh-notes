@@ -5,6 +5,7 @@ import { extractAdocFilenamesFromCollection } from '../../../content/extract-ado
 import Layout from '../../../layouts/Layout.astro';
 import { getAdocFileFromCollection } from '../../../content/get-adoc-file-from-collection';
 import type { Document } from 'asciidoctor';
+import Tag from '../../../components/Tag.astro';
 
 export async function getStaticPaths() {
   const adocAppFileNames = await extractAdocFilenamesFromCollection(COLLECTION.APPS);
@@ -19,16 +20,17 @@ export async function getStaticPaths() {
 const { app } = Astro.params;
 const entry = await getEntry(COLLECTION.APPS, app);
 
-let title: string, description: string, doclink: string;
+let title: string, tags: string[], description: string, doclink: string;
 let Content: any;
 let adoc: Document | undefined;
 
 if (entry) {
-  ({ title, description, doclink } = entry.data);
+  ({ title, tags = [], description, doclink } = entry.data);
   ({ Content } = await entry.render());
 } else {
   adoc = getAdocFileFromCollection(COLLECTION.APPS, app);
   title = adoc.getAttribute('appname');
+  tags = JSON.parse(adoc.getAttribute('tags') ?? '[]');
   description = adoc.getAttribute('description');
   doclink = adoc.getAttribute('doclink');
 }
@@ -38,6 +40,9 @@ if (entry) {
   <div class="render-content">
     <div class="header">
       <h1>{title}</h1>
+      <div class="tags">
+        {tags.map((tag) => <Tag tag={tag} color="dark" />)}
+      </div>
       <p>{description}</p>
       <a href={doclink} rel="noopener noreferrer" target="_blank">Documentation</a>
     </div>

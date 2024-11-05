@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 const { faq } = Astro.params;
 const entry = await getEntry(COLLECTION.FAQS, faq);
 
-let title: string, description: string, tags: string[];
+let title: string, tags: string[], description: string;
 let Content: any;
 let adoc: Document | undefined;
 
@@ -30,8 +30,8 @@ if (entry) {
 } else {
   adoc = getAdocFileFromCollection(COLLECTION.FAQS, faq);
   title = adoc.getAttribute('doctitle');
-  description = adoc.getAttribute('description');
   tags = JSON.parse(adoc.getAttribute('tags') ?? '[]');
+  description = adoc.getAttribute('description');
 }
 ---
 
