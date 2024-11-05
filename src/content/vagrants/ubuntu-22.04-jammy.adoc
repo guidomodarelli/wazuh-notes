@@ -1,0 +1,21 @@
+:title: Ubuntu 22.04 Jammy
+:date: 2024/11/05
+:author: Guido Modarelli
+:description: Ubuntu 22.04 Jammy is a server operating system developed by Canonical.
+:link: https://app.vagrantup.com/generic/boxes/ubuntu2204
+:tags: ["ubuntu", "jammy", "22.04"]
+
+== Vagrantfile
+
+[source,ruby]
+----
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/ubuntu2204"
+  config.vm.network :private_network, ip: "192.168.56.1"
+  config.vm.provider "virtualbox" do |pmv|
+    pmv.name = "ubuntu-jammy"
+    pmv.memory = 4092
+    pmv.cpus = 2
+  end
+end
+----
