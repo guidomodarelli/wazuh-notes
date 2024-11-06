@@ -23,7 +23,9 @@ const { title } = Astro.props;
     </div>
     <script>
       import { initializeCopyButtons } from '../scripts/copy-button';
+      import { initializeCopyButtonsForCodeBlocks } from '../scripts/initialize-copy-buttons-for-code-blocks';
 
+      initializeCopyButtonsForCodeBlocks();
       initializeCopyButtons();
     </script>
   </body>
