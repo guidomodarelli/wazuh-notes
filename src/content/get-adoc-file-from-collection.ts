@@ -1,6 +1,5 @@
 import Processor, { type Document } from 'asciidoctor';
 import { cwd } from 'node:process';
-import { ASCIIDOC_OPTIONS } from '../.config/asciidoc.config';
 import { COLLECTION } from './constants';
 import { load, type Cheerio, type CheerioAPI } from 'cheerio';
 import { codeToHtml } from 'shiki';
@@ -20,13 +19,11 @@ const transformCodeBlock = async (preElement: Cheerio<Element>) => {
     lang: codeLanguage,
     theme: DEFAULT_THEME,
   });
-  preElement.replaceWith(highlightedHtml);};
+  preElement.replaceWith(highlightedHtml);
+};
 
 export function getAdocFileFromCollection(collection: COLLECTION, filename: string): ReturnType {
-  const adocDocument = asciidoctor.loadFile(
-    cwd() + `/src/content/${collection}/${filename}.adoc`,
-    ASCIIDOC_OPTIONS,
-  );
+  const adocDocument = asciidoctor.loadFile(cwd() + `/src/content/${collection}/${filename}.adoc`);
   const $ = load(adocDocument.convert());
 
   // @ts-expect-error
@@ -36,7 +33,7 @@ export function getAdocFileFromCollection(collection: COLLECTION, filename: stri
     for (const preElement of codeBlockElements) {
       await transformCodeBlock($(preElement));
     }
-    
+
     return $.html();
   };
 
