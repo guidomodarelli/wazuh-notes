@@ -4,13 +4,14 @@ import { ASCIIDOC_OPTIONS } from '../.config/asciidoc.config';
 import { COLLECTION } from './constants';
 import * as cheerio from 'cheerio';
 import { codeToHtml } from 'shiki';
-import { DEFAULT_THEME } from "../../constants";
+import { DEFAULT_THEME } from '../../constants';
+import { createCopyButton } from "../ui/utils/create-copy-button";
 
 const asciidoctor = Processor();
 
 type ReturnType = Document & {
   convert: () => Promise<string>;
-}
+};
 
 export function getAdocFileFromCollection(collection: COLLECTION, filename: string): ReturnType {
   const adocDocument = asciidoctor.loadFile(
@@ -36,8 +37,12 @@ export function getAdocFileFromCollection(collection: COLLECTION, filename: stri
         lang: language ?? 'text',
         theme: DEFAULT_THEME,
       });
-      preCodeBlock.replaceWith(html);
+      preCodeBlock.replaceWith(html + createCopyButton(codeBlock));
     }
+
+    // get wrapped code blocks
+    const wrappedCodeBlocks = $('*:has(> pre > code)');
+    wrappedCodeBlocks.addClass('relative');
 
     return $.html();
   };
