@@ -21,8 +21,9 @@ const transformCodeBlock = async (preElement: Cheerio<Element>) => {
     lang: codeLanguage,
     theme: DEFAULT_THEME,
   });
-  preElement.replaceWith(highlightedHtml + createCopyButton(codeElement));
-};
+  const codeContent = codeElement.text().replace(/"/g, '&quot;');
+  const copyButtonHtml = createCopyButton(codeContent);
+  preElement.replaceWith(highlightedHtml + copyButtonHtml);};
 
 const addRelativeClassToContainingElements = ($: CheerioAPI) => {
   $('*:has(> pre > code)').addClass('relative');
