@@ -1,12 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import Cards from './Cards.astro';
-import SearchWithDropdown, { type DropdownButton } from './SearchWithDropdown.astro';
+import SearchWithDropdown from './SearchWithDropdown.astro';
 import { type Props as CardProps } from './Card.astro';
 import { extractAdocFilenamesFromCollection } from '../content/extract-adoc-filenames-from-collection';
 import { COLLECTION } from '../content/constants';
 import { getAdocFileFromCollection } from '../content/get-adoc-file-from-collection';
 import { schemaFaq, schemaApp, schemaVagrant } from '../content/schema';
+import { filterOptions } from "../constants/filter-options";
 
 async function fetchAdocFilesFromCollection(collection: COLLECTION) {
   const adocFilenames = await extractAdocFilenamesFromCollection(collection);
@@ -95,25 +96,6 @@ const cards: CardProps[] = [
     };
   }),
 ];
-
-const dropdownButtons: DropdownButton[] = [
-  {
-    key: 'all',
-    label: 'All',
-  },
-  {
-    key: COLLECTION.APPS,
-    label: 'Apps',
-  },
-  {
-    key: COLLECTION.FAQS,
-    label: 'FAQs',
-  },
-  {
-    key: COLLECTION.VAGRANTS,
-    label: 'Vagrants',
-  },
-];
 ---
 
 <script>
@@ -123,5 +105,5 @@ const dropdownButtons: DropdownButton[] = [
   initializeDropdownListeners();
 </script>
 
-<SearchWithDropdown class="mb-6" dropdownButtons={dropdownButtons} />
+<SearchWithDropdown class="mb-6" dropdownButtons={filterOptions} />
 <Cards cards={cards} />
