@@ -64,7 +64,6 @@ const initializeTypeFromQuery = (dropdownButton: HTMLElement) => {
   // if the type is defined and is a known type
   if (type && isKnownType(type)) {
     // change the dropdown button label
-    console.log(getFilterOption(type));
     dropdownButton.querySelector('span')!.textContent = getFilterOption(type)!.label;
     filterCardsByType(type);
   }
