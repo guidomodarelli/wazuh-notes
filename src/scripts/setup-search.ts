@@ -36,7 +36,12 @@ export const setupSearch = () => {
     });
   });
 
+  initializeSearchFromQuery(searchInput);
+};
+
+const initializeSearchFromQuery = (searchInput: HTMLInputElement) => {
   const searchQuery = new URLSearchParams(window.location.search).get('q');
+
   if (searchQuery) {
     searchInput.value = searchQuery;
     searchInput.dispatchEvent(new Event('input'));
