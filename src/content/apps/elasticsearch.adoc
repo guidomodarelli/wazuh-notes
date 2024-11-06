@@ -4,9 +4,8 @@
 :description: Search engine based on the Lucene library. It provides a distributed, multitenant-capable full-text search engine with an HTTP web interface and schema-free JSON documents
 :doclink: https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
 
-.Info
-[%collapsible%open]
-====
+== Info
+
 |===
 | Description | Value
 
@@ -40,11 +39,8 @@
 | JVM options file (Docker/zip)
 | `<ELASTICSEARCH_HOME>/config/jvm.options`
 |===
-====
 
-.Backup
-[%collapsible]
-====
+== Backup
 Backup folders/files
 
 |===
@@ -68,11 +64,8 @@ Backup folders/files
 | OpenDistro for Elasticsearch - Initial configuration
 | `/usr/share/elasticsearch/plugins/opendistro_security/securityconfig`
 |===
-====
 
-.Commands
-[%collapsible]
-====
+== Commands
 
 > Service start - systemctl
 >
@@ -97,11 +90,8 @@ Backup folders/files
 > Plugins - List
 >
 > `<ELASTICSEARCH_PATH>/bin/elasticsearch-plugin list`
-====
 
-.Debug
-[%collapsible]
-====
+== Debug
 
 > Service status - systemctl
 >
@@ -122,4 +112,3 @@ Backup folders/files
 > Logs (journalctl) - get logs filtering by errors or warnings with context
 >
 > `journalctl -u elasticsearch | grep -iE "err|warn" -C 10`
-====

@@ -4,9 +4,7 @@
 :description: Wazuh agent is a lightweight agent that runs on your servers and monitors your network traffic and security events.
 :doclink: https://documentation.wazuh.com/current/user-manual/agents/wazuh-agent/index.html
 
-.Info
-[%collapsible%open]
-====
+== Info
 |===
 | Description | Value
 
@@ -25,11 +23,8 @@
 | Service
 | `wazuh-agent`
 |===
-====
 
-.Backup
-[%collapsible]
-====
+== Backup
 Backup folders/files
 
 |===
@@ -44,11 +39,8 @@ Backup folders/files
 | Manager - Client keys
 | `/var/ossec/etc/client.keys`
 |===
-====
 
-.Commands
-[%collapsible]
-====
+== Commands
 
 > Service start - systemctl
 >
@@ -77,11 +69,8 @@ Backup folders/files
 > Get info
 >
 > `/var/ossec/info/wazuh-control info`
-====
 
-.Debug
-[%collapsible]
-====
+== Debug
 
 > Service status - systemctl
 >
@@ -106,4 +95,3 @@ Backup folders/files
 > Logs - filter by agent registration
 >
 > `Select-String -Path C:\\Program Files (x86)\\ossec-agent\\logs\\ossec.log -Pattern "wazuh-agentd"`
-====
