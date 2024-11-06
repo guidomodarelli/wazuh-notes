@@ -23,12 +23,14 @@ const { title } = Astro.props;
       <slot />
     </div>
     <script>
-      import { initializeCopyButtons } from '../scripts/copy-button';
-      import { initializeCopyButtonsForCodeBlocks } from '../scripts/initialize-copy-buttons-for-code-blocks';
-      import { transformCodeElementsForCopyTheirContent } from '../scripts/transform-code-elements-for-copy-their-content';
+      import {
+        initializeCopyButtons,
+        setupCopyButtonsForCodeBlocks,
+        transformCodeElementsForCopyTheirContent,
+      } from '../scripts';
 
       transformCodeElementsForCopyTheirContent();
-      initializeCopyButtonsForCodeBlocks();
+      setupCopyButtonsForCodeBlocks();
       initializeCopyButtons();
     </script>
   </body>
