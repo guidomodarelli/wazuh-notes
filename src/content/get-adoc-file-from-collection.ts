@@ -5,7 +5,6 @@ import { COLLECTION } from './constants';
 import { load, type Cheerio, type CheerioAPI } from 'cheerio';
 import { codeToHtml } from 'shiki';
 import { DEFAULT_THEME } from '../../constants';
-import { createCopyButton } from '../ui/utils/create-copy-button';
 import type { Element } from 'domhandler';
 
 const asciidoctor = Processor();
@@ -21,13 +20,7 @@ const transformCodeBlock = async (preElement: Cheerio<Element>) => {
     lang: codeLanguage,
     theme: DEFAULT_THEME,
   });
-  const codeContent = codeElement.text().replace(/"/g, '&quot;');
-  const copyButtonHtml = createCopyButton(codeContent);
-  preElement.replaceWith(highlightedHtml + copyButtonHtml);};
-
-const addRelativeClassToContainingElements = ($: CheerioAPI) => {
-  $('*:has(> pre > code)').addClass('relative');
-};
+  preElement.replaceWith(highlightedHtml);};
 
 export function getAdocFileFromCollection(collection: COLLECTION, filename: string): ReturnType {
   const adocDocument = asciidoctor.loadFile(
@@ -43,8 +36,7 @@ export function getAdocFileFromCollection(collection: COLLECTION, filename: stri
     for (const preElement of codeBlockElements) {
       await transformCodeBlock($(preElement));
     }
-
-    addRelativeClassToContainingElements($);
+    
     return $.html();
   };
 
