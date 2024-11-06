@@ -1,7 +1,6 @@
 ---
 import '../styles/tailwind.css';
 import '../styles/copy-button.scss';
-import { cwd } from "node:process";
 
 interface Props {
   title: string;
@@ -9,12 +8,6 @@ interface Props {
 
 const { title } = Astro.props;
 ---
-
-<script>
-  type Theme = 'light' | 'dark';
-  const theme: Theme = (localStorage.getItem('theme') as Theme) || 'dark';
-  document.documentElement.classList.add(theme);
-</script>
 
 <html lang="en" class="min-h-full dark">
   <head>
@@ -28,6 +21,6 @@ const { title } = Astro.props;
     <div id="root">
       <slot />
     </div>
-    <script type="module" src={cwd() + '/src/scripts/copy-button'}></script>
+    <script type="module" src={'/src/scripts/copy-button'}></script>
   </body>
 </html>
