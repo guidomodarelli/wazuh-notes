@@ -2,10 +2,11 @@ import Processor, { type Document } from 'asciidoctor';
 import { cwd } from 'node:process';
 import { ASCIIDOC_OPTIONS } from '../.config/asciidoc.config';
 import { COLLECTION } from './constants';
-import * as cheerio from 'cheerio';
+import { load, type Cheerio, type CheerioAPI } from 'cheerio';
 import { codeToHtml } from 'shiki';
 import { DEFAULT_THEME } from '../../constants';
-import { createCopyButton } from "../ui/utils/create-copy-button";
+import { createCopyButton } from '../ui/utils/create-copy-button';
+import type { Element } from 'domhandler';
 
 const asciidoctor = Processor();
 
@@ -13,37 +14,36 @@ type ReturnType = Document & {
   convert: () => Promise<string>;
 };
 
+const transformCodeBlock = async (preElement: Cheerio<Element>) => {
+  const codeElement = preElement.children('code');
+  const codeLanguage = codeElement.attr('data-lang') || 'text';
+  const highlightedHtml = await codeToHtml(codeElement.text(), {
+    lang: codeLanguage,
+    theme: DEFAULT_THEME,
+  });
+  preElement.replaceWith(highlightedHtml + createCopyButton(codeElement));
+};
+
+const addRelativeClassToContainingElements = ($: CheerioAPI) => {
+  $('*:has(> pre > code)').addClass('relative');
+};
+
 export function getAdocFileFromCollection(collection: COLLECTION, filename: string): ReturnType {
   const adocDocument = asciidoctor.loadFile(
     cwd() + `/src/content/${collection}/${filename}.adoc`,
     ASCIIDOC_OPTIONS,
   );
-  const $ = cheerio.load(adocDocument.convert());
+  const $ = load(adocDocument.convert());
 
   // @ts-expect-error
   adocDocument.convert = async () => {
-    // get all code blocks
-    const codeBlocks = $('pre:has(> code)');
-    const blocks = codeBlocks.get();
+    const codeBlockElements = $('pre:has(> code)').get();
 
-    for (const block of blocks) {
-      // get the pre code block element
-      const preCodeBlock = $(block);
-      // get the code block element
-      const codeBlock = preCodeBlock.children('code');
-      // get the language of the code block
-      const language = codeBlock.attr('data-lang');
-      const html = await codeToHtml(codeBlock.text(), {
-        lang: language ?? 'text',
-        theme: DEFAULT_THEME,
-      });
-      preCodeBlock.replaceWith(html + createCopyButton(codeBlock));
+    for (const preElement of codeBlockElements) {
+      await transformCodeBlock($(preElement));
     }
 
-    // get wrapped code blocks
-    const wrappedCodeBlocks = $('*:has(> pre > code)');
-    wrappedCodeBlocks.addClass('relative');
-
+    addRelativeClassToContainingElements($);
     return $.html();
   };
 
