@@ -1,7 +1,7 @@
 import { createCopyButton } from "../ui/utils/create-copy-button";
 
-export const initializeCopyButtonsForCodeBlocks = () => {
-  addContentClassToCodeBlocks();
+export const setupCopyButtonsForCodeBlocks = () => {
+  addDivWrapperToPreCodeBlocks();
   document.querySelectorAll('pre:has(> code)').forEach(addCopyButtonToCodeBlock);
   document.querySelectorAll('*:has(> pre > code)').forEach(addRelativeClass);
 };
@@ -15,10 +15,10 @@ const addRelativeClass = (element: Element) => {
   element.classList.add('relative');
 };
 
-const addContentClassToCodeBlocks = () => {
+const addDivWrapperToPreCodeBlocks = () => {
   // I want to select all <pre> elements that contain a <code> element 
   // within them and do not have a <div class="content"> as their first child.
-  const codeBlocks = document.querySelectorAll(':not(:has(div.content > pre:first-child)) > pre:has(> code)');
+  const codeBlocks = document.querySelectorAll(':not(:has(div > pre:first-child)) > pre:has(> code)');
   codeBlocks.forEach((codeBlock) => {
     const contentElement = document.createElement('div');
     contentElement.innerHTML = codeBlock.outerHTML;
