@@ -3,7 +3,7 @@ const COPIED_BUTTON_CLASS = 'copied-button';
 const COPIED_BUTTON_HIDDEN_CLASS = 'hidden';
 const DATA_CLIPBOARD_TEXT_ATTRIBUTE = 'data-clipboard-text';
 
-const initializeCopyButtons = () => {
+export const initializeCopyButtons = () => {
   const copyButtons = document.querySelectorAll(`.${COPY_BUTTON_CLASS}`);
   copyButtons.forEach((copyButton) => {
     attachCopyEvent(copyButton);
@@ -29,6 +29,3 @@ const showCopiedFeedback = (copyButton: Element) => {
     }, 500);
   }
 };
-
-// Initialize the process
-initializeCopyButtons();
