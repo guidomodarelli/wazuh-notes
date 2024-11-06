@@ -68,6 +68,7 @@ code {
 
 :not(pre) > code:hover {
   cursor: copy;
+  user-select: none;
 }
 
 :not(pre) > code {
