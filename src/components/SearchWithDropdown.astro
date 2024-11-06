@@ -1,18 +1,14 @@
 ---
 import ChevronDown from '../assets/icons/ChevronDown.astro';
 import SearchIcon from '../assets/icons/SearchIcon.astro';
+import type { FilterOption } from "../types/filter-option";
 import { cn } from '../utils/cn';
-
-export interface DropdownButton {
-  key: string;
-  label: string;
-}
 
 interface Props {
   label?: string;
   submitButton?: string;
   placeholder?: string;
-  dropdownButtons?: DropdownButton[];
+  dropdownButtons?: FilterOption[];
   class?: string;
 }
 
