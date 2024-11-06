@@ -15,4 +15,8 @@
   background: dimgray;
   border-radius: 10px;
   transform: translate(15px, -50%);
+
+  &:hover {
+    cursor: copy;
+  }
 }
