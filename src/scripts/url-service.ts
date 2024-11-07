@@ -1,3 +1,4 @@
+import debounce from 'lodash.debounce';
 import { BehaviorSubject } from 'rxjs';
 
 export enum UrlQueryParam {
@@ -5,11 +6,11 @@ export enum UrlQueryParam {
   TYPE = 't',
 }
 
-const searchParams = new URLSearchParams(window.location.search);
+const url = new URL(window.location.href);
 
 const subject = new BehaviorSubject<Partial<Record<UrlQueryParam, string>>>({
-  [UrlQueryParam.QUERY]: searchParams.get(UrlQueryParam.QUERY) ?? '',
-  [UrlQueryParam.TYPE]: searchParams.get(UrlQueryParam.TYPE) ?? '',
+  [UrlQueryParam.QUERY]: url.searchParams.get(UrlQueryParam.QUERY) ?? '',
+  [UrlQueryParam.TYPE]: url.searchParams.get(UrlQueryParam.TYPE) ?? '',
 });
 
 /* 
@@ -26,9 +27,10 @@ export const UrlService = {
   },
 
   setQueryParam(key: UrlQueryParam, value: string) {
-    const url = new URL(window.location.href);
-    url.searchParams.set(key, value);
-    window.history.replaceState({}, '', url.toString());
-    subject.next({ [key]: value });
+    debounce(() => {
+      url.searchParams.set(key, value);
+      window.history.replaceState({}, '', url.toString());
+      subject.next({ [key]: value });
+    }, 350)();
   },
 };

@@ -17,11 +17,7 @@ export const setupSearch = () => {
   searchInput.addEventListener('input', (event) => {
     const inputText = (event.target as HTMLInputElement)?.value.toLowerCase().trim();
 
-    // set URL query parameter
-    debounce(() => {
-      console.log(inputText);
-      UrlService.setQueryParam(UrlQueryParam.QUERY, inputText);
-    }, 350)();
+    UrlService.setQueryParam(UrlQueryParam.QUERY, inputText);
 
     const doesCardMatchSearch = (card: HTMLElement): boolean => {
       const { title, description, tags } = JSON.parse(card.dataset.card ?? '{}') as CardProps;
