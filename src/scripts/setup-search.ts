@@ -1,5 +1,7 @@
-import type { Props as CardProps } from "../components/Card.astro";
-import { includesText } from "../utils/includes-text";
+import type { Props as CardProps } from '../components/Card.astro';
+import { includesText } from '../utils/includes-text';
+import debounce from 'lodash.debounce';
+import { UrlQueryParam, UrlService } from './url-service';
 
 export const setupSearch = () => {
   const searchForm = document.querySelector('#search-dropdown-form') as HTMLFormElement;
@@ -15,10 +17,14 @@ export const setupSearch = () => {
   searchInput.addEventListener('input', (event) => {
     const inputText = (event.target as HTMLInputElement)?.value.toLowerCase().trim();
 
+    // set URL query parameter
+    debounce(() => {
+      console.log(inputText);
+      UrlService.setQueryParam(UrlQueryParam.QUERY, inputText);
+    }, 350)();
+
     const doesCardMatchSearch = (card: HTMLElement): boolean => {
-      const { title, description, tags } = JSON.parse(
-        card.dataset.card ?? '{}',
-      ) as CardProps;
+      const { title, description, tags } = JSON.parse(card.dataset.card ?? '{}') as CardProps;
       return (
         includesText(inputText)(title) ||
         includesText(inputText)(description) ||
@@ -40,10 +46,6 @@ export const setupSearch = () => {
 };
 
 const initializeSearchFromQuery = (searchInput: HTMLInputElement) => {
-  const searchQuery = new URLSearchParams(window.location.search).get('q');
-
-  if (searchQuery) {
-    searchInput.value = searchQuery;
-    searchInput.dispatchEvent(new Event('input'));
-  }
+  searchInput.value = UrlService.getQueryParam(UrlQueryParam.QUERY);
+  searchInput.dispatchEvent(new Event('input'));
 };

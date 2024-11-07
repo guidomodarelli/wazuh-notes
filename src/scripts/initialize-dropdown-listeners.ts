@@ -2,6 +2,7 @@ import { filterOptions } from "../constants/filter-options";
 import { COLLECTION } from "../content/constants";
 import { hide, toggleVisibility } from '../ui/utils/show-hide';
 import type { FilterOption } from "../types/filter-option";
+import { UrlQueryParam, UrlService } from "./url-service";
 
 export const initializeDropdownListeners = () => {
   const dropdownButton = document.querySelector('#dropdown-button') as HTMLElement;
@@ -59,7 +60,7 @@ const getFilterOption = (type: string) => {
 }
 
 const initializeTypeFromQuery = (dropdownButton: HTMLElement) => {
-  const type = new URLSearchParams(window.location.search).get('t');
+  const type = UrlService.getQueryParam(UrlQueryParam.TYPE);
 
   // if the type is defined and is a known type
   if (type && isKnownType(type)) {
