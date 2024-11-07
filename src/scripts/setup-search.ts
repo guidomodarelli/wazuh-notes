@@ -1,6 +1,5 @@
 import type { Props as CardProps } from '../components/Card.astro';
 import { includesText } from '../utils/includes-text';
-import debounce from 'lodash.debounce';
 import { UrlQueryParam, UrlService } from './url-service';
 
 export const setupSearch = () => {
@@ -15,7 +14,7 @@ export const setupSearch = () => {
   searchInput.focus();
 
   searchInput.addEventListener('input', (event) => {
-    const inputText = (event.target as HTMLInputElement)?.value.toLowerCase().trim();
+    const inputText = (event.target as HTMLInputElement)?.value.trim();
 
     UrlService.setQueryParam(UrlQueryParam.QUERY, inputText);
 
