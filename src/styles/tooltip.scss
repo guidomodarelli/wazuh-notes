@@ -12,11 +12,11 @@
     position: absolute;
     z-index: 1;
     bottom: 125%;
-    left: 50%;
-    right: 50%;
+    left: 0px;
+    right: 100%;
     margin-left: -60px;
     transition: opacity 0.3s;
-    transform: translateX(50%);
+    transform: translateX(63%);
 
     &::after {
       content: "";
