@@ -31,6 +31,6 @@ export const UrlService = {
       url.searchParams.set(key, value);
       window.history.replaceState({}, '', url.toString());
       subject.next({ [key]: value });
-    }, 350)();
+    }, 250)();
   },
 };

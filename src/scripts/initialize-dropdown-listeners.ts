@@ -41,6 +41,7 @@ const handleDropdownButtonClick =
       dropdownButton.querySelector('span')!.textContent = dropdownButtonData.label;
       filterCardsByType(dropdownButtonData.key);
       hide(dropdown);
+      UrlService.setQueryParam(UrlQueryParam.TYPE, dropdownButtonData.key);
     });
   };
 
