@@ -1,4 +1,4 @@
-import { debounceTime } from '../utils/debounce-time';
+import debounce from 'lodash.debounce';
 
 export const transformCodeElementsForCopyTheirContent = () => {
   const codeElements = document.querySelectorAll(':not(pre) > code');
@@ -6,9 +6,7 @@ export const transformCodeElementsForCopyTheirContent = () => {
 };
 
 const transformCodeElement = (codeElement: Element) => {
-  codeElement.addEventListener('click', () =>
-    debounceTime(150)(handleCodeElementClick.bind(null, codeElement)),
-  );
+  codeElement.addEventListener('click', debounce(handleCodeElementClick.bind(null, codeElement), 150));
 };
 
 const handleCodeElementClick = (codeElement: Element) => {
