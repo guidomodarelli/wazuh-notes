@@ -16,13 +16,15 @@ const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = 
 ---
 
 <div class="card" data-card={JSON.stringify({ title, description, tags })} data-card-type={type}>
-  <div class="card-header">
-    <h5 class="title">{title}</h5>
-  </div>
-  <div class="card-content">
-    <p>
-      {description}
-    </p>
+  <div> <!-- to separate footer from content -->
+    <div class="card-header">
+      <h5 class="title">{title}</h5>
+    </div>
+    <div class="card-content">
+      <p>
+        {description}
+      </p>
+    </div>
   </div>
   <div class="card-footer">
     <div class="tags">
@@ -46,7 +48,7 @@ const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = 
 
 <style lang="scss">
   .card {
-    @apply grid gap-3 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow;
+    @apply flex flex-col justify-between gap-3 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow;
 
     &:is(.dark *) {
       @apply bg-gray-800 border-gray-700;
@@ -60,7 +62,6 @@ const { title, description, btnText: readMoreBtn = 'Read more', btnHref, tags = 
 
     &-footer {
       @apply flex flex-col gap-6;
-      align-self: flex-end;
 
       a {
         @apply inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg;
