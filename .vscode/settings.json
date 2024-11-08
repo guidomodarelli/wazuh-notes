@@ -2,4 +2,12 @@
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
   },
+  "cSpell.words": [
+    "asciidoctor",
+    "astro",
+    "astrojs",
+    "clsx",
+    "tailwindcss",
+    "wazuh"
+  ],
 }
